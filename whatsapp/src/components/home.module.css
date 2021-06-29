@@ -1,0 +1,20 @@
+:root {
+  --greenHeight: 130px;
+}
+.green {
+  height: var(--greenHeight);
+}
+.white {
+  height: calc(100% - var(--greenHeight));
+}
+@media (max-height: 491px) {
+  .white {
+    position: fixed;
+    top: var(--greenHeight);
+    height: 340px;
+  }
+  .green {
+    position: fixed;
+    top: 0;
+  }
+}

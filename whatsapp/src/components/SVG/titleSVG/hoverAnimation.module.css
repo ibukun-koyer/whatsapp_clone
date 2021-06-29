@@ -1,0 +1,51 @@
+:root {
+  --svgAnimationSpeed: 0.5s;
+}
+.anim {
+  animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.svg1 {
+  animation: svg1 var(--svgAnimationSpeed);
+}
+.svg1Out {
+  animation: svg1 var(--svgAnimationSpeed) reverse;
+}
+@keyframes svg1 {
+  0% {
+    opacity: 0;
+    bottom: 2rem;
+  }
+  100% {
+    opacity: 1;
+    bottom: 10rem;
+  }
+}
+.svg2 {
+  animation: svg2 var(--svgAnimationSpeed);
+}
+.svg2Out {
+  animation: svg2 var(--svgAnimationSpeed) reverse;
+}
+@keyframes svg2 {
+  0% {
+    opacity: 0;
+    bottom: 2rem;
+
+    object-fit: contain;
+  }
+
+  100% {
+    opacity: 1;
+    bottom: 5rem;
+
+    object-fit: contain;
+  }
+}

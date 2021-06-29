@@ -1,0 +1,21 @@
+.image,
+.vid {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+.close {
+  font-size: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.caption {
+  width: 80%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: grey;
+}

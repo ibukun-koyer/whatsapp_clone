@@ -1,0 +1,72 @@
+:root {
+  --animation-time: 0.5s;
+}
+.onTop {
+  z-index: 5;
+}
+.abs {
+  position: absolute;
+  top: 0;
+}
+.initializePage {
+  overflow-x: hidden;
+  height: 100%;
+  background-color: white;
+  width: 100%;
+}
+.animate1 {
+  animation: width var(--animation-time);
+}
+.animate2 {
+  animation: width2 var(--animation-time);
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.animate3 {
+  animation: widthAndLeft var(--animation-time);
+  width: 100%;
+  overflow: hidden;
+}
+.animate4 {
+  animation: widthAndLeft2 var(--animation-time);
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@keyframes width {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes width2 {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+@keyframes widthAndLeft {
+  0% {
+    width: 0;
+    left: 100%;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+@keyframes widthAndLeft2 {
+  0% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}

@@ -1,0 +1,67 @@
+user id:
+	-status pics 
+	-contact - stored together with a variable stating either ind or group, contact stored as uid
+		and groups stored in a section of groups with an id of the groups section
+		-individual
+		-group
+	-when contacts and groups are created, a new space is allocated for the chat between them in a 
+		general section
+
+
+------------------------------------------------------------------------------------------------------
+userid{
+	status_pics_list:{
+		1:{
+			type:"text/image/video",
+			status_des:"text user entered with status",
+			imageOrVideoUrl:"cloudinary link",
+			text_type_info:{
+						html:"",
+						css:""
+					}
+			
+		}
+	}
+	contact:{
+		"meeting id number":{
+			type:"contact (Indiv or group)"
+		}
+	}
+	archieved:{
+		"meeting id number or uid":{
+			type:"contact (Indiv or group)"	
+		}
+	}
+}
+groups:{
+	"group id":{
+		users:{
+			user1, user2, user3, user4, ... , usern
+		}
+		messages:{
+			msg:{
+				type:"image, video, emoji, text, maybe audio?",
+				read_recipient:{
+					users:{user1, user2,..., usern}
+				}
+				sentBy:userX.
+				deleted_by:{user1, user2,..., userN}
+			}
+			cleared:"user 1, user 2,..., userN"
+		}
+	}
+}
+contacts:{
+	"contact id":{
+		users: user
+		messages:{
+			msg:{
+				type:"image, video, emoji, text, maybe audio?",
+				read_recipient:"true or false"
+				sentBy:UserX
+				deleted_by:{user1 or user2}
+			}
+			cleared:"user 1 or user 2"
+		}
+	}
+}

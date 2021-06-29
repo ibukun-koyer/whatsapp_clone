@@ -1,0 +1,33 @@
+.on {
+  transition: 0.5s;
+  background-color: var(--hoverColor);
+  border-radius: 50%;
+}
+.off {
+  transition: 0.5s;
+  background-color: var(--darkGray);
+}
+.relative {
+  position: relative;
+}
+.image,
+.contact {
+  position: absolute;
+  left: 0;
+  box-shadow: 0 0.5rem 0.5rem 0.2rem rgba(0, 0, 0, 0.2);
+
+  border-radius: 50%;
+  background-color: inherit;
+  box-sizing: border-box;
+  height: 53px;
+  width: 53px;
+}
+.image {
+  z-index: 5;
+  bottom: 5rem;
+}
+.contact {
+  z-index: 5;
+  bottom: 10rem;
+  /* border-left: 0.2rem solid #0795dc; */
+}

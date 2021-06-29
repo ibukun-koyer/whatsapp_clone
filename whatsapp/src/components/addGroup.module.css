@@ -1,0 +1,53 @@
+:root {
+  --margin: 2rem;
+  --lemon: #09e85e;
+  --nextBtnSize: 3rem;
+}
+.input {
+  width: calc(100% - var(--margin));
+  margin: var(--margin);
+  margin-bottom: 0.5rem;
+  border: none;
+  border-bottom: 0.1rem solid var(--lightGray);
+  outline: none;
+}
+.nextBtn {
+  background-color: var(--lemon);
+  /* padding: 1rem; */
+  height: var(--nextBtnSize);
+  width: var(--nextBtnSize);
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-text-stroke: 2.5px var(--lemon);
+  box-shadow: 0 0.15rem 0.1rem 0.001rem rgba(0, 0, 0, 0.3);
+}
+.userPicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkGray);
+  width: fit-content;
+  border-radius: 1rem;
+}
+.txt {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.8rem;
+  font-stretch: 100%;
+  font-weight: 400;
+  color: rgb(74, 74, 74);
+}
+.times {
+  font-size: 1rem;
+  -webkit-text-stroke: 1.8px var(--darkGray);
+  color: rgb(150, 150, 150);
+  /* padding: 0.1rem; */
+  border-radius: 50%;
+  height: fit-content;
+}

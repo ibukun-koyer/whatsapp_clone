@@ -1,0 +1,221 @@
+:root {
+  --Chatmargin: 6vw;
+  --myMessageColor: #dcf8c6;
+  --yourMessageColor: white;
+  --sizeOfMessageTriangle: 0.6rem;
+  --triangleBorderRadius: 0.2rem;
+}
+.yours {
+  /* background-color: greenyellow; */
+  justify-content: flex-start;
+}
+.mine {
+  /* background-color: red; */
+  justify-content: flex-end;
+}
+.message,
+.dateSec {
+  display: flex;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.dateSec {
+  position: relative;
+  justify-content: center;
+}
+.imageType,
+.wrapVid {
+  object-fit: contain;
+  width: 20rem;
+  border-radius: 0.3rem;
+  position: relative;
+}
+.vid {
+  width: 100%;
+}
+.playIcon {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 1rem;
+  font-size: 3rem;
+  top: calc(50% - 1rem);
+  left: 9rem;
+  margin: auto;
+  color: white;
+  cursor: pointer;
+}
+.date {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  padding: 0.5em 1em;
+  background-color: #d8e9f2;
+  color: grey;
+  box-shadow: 0.1rem 0 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+
+  /* height: 10rem; */
+}
+
+.myMessageFloat,
+.yourMessageFloat {
+  position: relative;
+  margin-left: var(--Chatmargin);
+  margin-right: var(--Chatmargin);
+  font-size: 1rem;
+
+  padding: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  z-index: 2;
+  border-radius: 0.3rem;
+  box-shadow: 0.1rem 0 2px rgba(0, 0, 0, 0.2);
+  max-width: 35rem;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+
+.time {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: flex-end; */
+  padding-left: 1rem;
+  /* height: 100%; */
+  font-size: 0.7rem;
+  color: grey;
+  /* margin-left: auto; */
+}
+.wrapTime {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  float: right;
+  height: 1.5rem;
+}
+.myMessageFloat {
+  background-color: var(--myMessageColor);
+}
+.yourMessageFloat {
+  background-color: var(--yourMessageColor);
+}
+.myMessageFloatTri {
+  border-top-right-radius: 0;
+  margin-top: 1rem;
+}
+.yourMessageFloatTri {
+  border-top-left-radius: 0;
+  margin-top: 1rem;
+}
+.myMessageFloatTri::before,
+.yourMessageFloatTri::before {
+  position: absolute;
+  content: "";
+
+  top: 0;
+
+  width: var(--sizeOfMessageTriangle);
+  height: var(--sizeOfMessageTriangle);
+  z-index: -5;
+  box-shadow: 0.1rem 0 2px rgba (0, 0, 0, 0.2);
+
+  /* border-radius: 0.2rem; */
+}
+.myMessageFloatTri::before {
+  background-color: var(--myMessageColor);
+  right: calc((var(--sizeOfMessageTriangle) / 2) * -1);
+  transform: skewX(135deg);
+  border-top-right-radius: var(--triangleBorderRadius);
+}
+.yourMessageFloatTri::before {
+  background-color: var(--yourMessageColor);
+  left: calc((var(--sizeOfMessageTriangle) / 2) * -1);
+  transform: skewX(45deg);
+  border-top-left-radius: var(--triangleBorderRadius);
+}
+.message:nth-last-child(1) {
+  margin-bottom: 2rem;
+}
+.loadingBkg {
+  position: absolute;
+  top: 1rem;
+  width: 3rem;
+  height: 3rem;
+  left: calc((100% - 3rem) / 2);
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.05rem 0.3rem 0.05rem rgba(0, 0, 0, 0.2);
+}
+.loadingBkg > div {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 0.2rem solid var(--greenish);
+  border-bottom: 0.1rem solid white;
+  animation: rotate infinite 0.5s;
+}
+.scrollDown {
+  position: fixed;
+  /* top: 1rem; */
+  width: 3rem;
+  height: 3rem;
+  /* left: 2rem; */
+  right: 5vw;
+  bottom: 7rem;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.05rem 0.3rem 0.05rem rgba(0, 0, 0, 0.2);
+  color: grey;
+  z-index: 4;
+
+  /* position: sticky;
+    position: -webkit-sticky;
+    top: 1rem;
+    z-index: 4; */
+}
+.scrollDown > i {
+  font-size: 2rem;
+}
+.blur {
+  position: absolute;
+  height: 1.6rem;
+  top: 0;
+  right: 0;
+  border-radius: 0.3rem;
+  /* color: red; */
+  /* background-color: inherit; */
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+.dropDownPrompt {
+  padding-left: 1rem;
+}
+.myMessageFloat .blur {
+  background-image: linear-gradient(to right, #dcf8c600, #dcf8c6 70%);
+}
+.yourMessageFloat .blur {
+  background-image: linear-gradient(to right, rgb(255, 255, 255, 0), white 80%);
+}
+/* @media (min-width: 1496px) {
+  .scrollDown {
+    right: 6rem;
+  }
+} */
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

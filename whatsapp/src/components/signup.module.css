@@ -1,0 +1,110 @@
+.bkg {
+  width: 100%;
+}
+.green {
+  background-color: #009688;
+  height: 30%;
+  width: 100%;
+}
+.white {
+  background-color: #d9dbd6;
+  height: 70%;
+  width: 100%;
+}
+.form {
+  background-color: white;
+  left: calc(50% / 2);
+  padding: 4rem;
+  position: absolute;
+  top: 150px;
+  width: 50%;
+  /* border-radius: 0.5rem; */
+  box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+.title {
+  position: absolute;
+  top: 19px;
+  left: 300px;
+  color: white;
+}
+.icon {
+  width: 6rem;
+}
+.title > span {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.btn {
+  margin: 0 auto;
+  margin-top: 19px;
+}
+.wrapImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.userImage {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-color: #d9dbd6;
+  overflow: hidden;
+}
+.imagePicker {
+  position: absolute;
+  /* opacity: 0; */
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  opacity: 0;
+}
+.pp {
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
+}
+.alert {
+  width: 50%;
+  /* min-width: 500px; */
+  position: fixed;
+  top: 19px;
+  left: calc(25%);
+  z-index: 10;
+  margin: 0 !important;
+
+  border-radius: 1rem;
+
+  padding: 2rem;
+  box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+.red {
+  color: brown;
+  background-color: rgb(252, 193, 181);
+}
+.green_ {
+  color: green;
+  background-color: rgb(155, 255, 155);
+}
+.red .btnError {
+  border: 1px solid red;
+  color: red;
+}
+.green_ .btnError {
+  color: green;
+  border: 1px solid green;
+}
+.buttonAlert {
+  padding: 0.2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.btnError {
+  padding: 0.3rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  background-color: inherit;
+
+  border-radius: 0.5rem;
+}

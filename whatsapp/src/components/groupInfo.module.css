@@ -1,0 +1,193 @@
+:root {
+  --imageSize: 12rem;
+  --imageMargin: 2rem;
+  --bodyMargin: 2rem;
+  --inputPadding: 0.3rem;
+  --animationBarSize: 4rem;
+}
+.body {
+  height: calc(100% - 110px);
+  background-color: var(--darkGray);
+}
+.flex,
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.userImage {
+  width: var(--imageSize);
+  height: var(--imageSize);
+  background-color: gray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: var(--imageMargin);
+  margin-bottom: var(--imageMargin);
+}
+.imagePicker {
+  position: absolute;
+  width: var(--imageSize);
+  height: var(--imageSize);
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 10;
+}
+.pad {
+  margin-left: var(--bodyMargin);
+  width: calc(100% - var(--bodyMargin));
+}
+.title {
+  margin-top: var(--imageMargin);
+  background-color: var(--darkGray);
+
+  border: none;
+  border-bottom: 0.15rem solid var(--greenish);
+  padding-top: var(--inputPadding);
+  padding-bottom: var(--inputPadding);
+  font-stretch: 100%;
+  outline: none;
+  padding-right: 3rem;
+  width: 100%;
+  /* z-index: 5; */
+}
+.wrapTitle {
+  position: relative;
+  width: 100%;
+}
+.maxChar,
+.placeholder {
+  position: absolute;
+  color: rgb(180, 180, 180);
+  right: 1rem;
+  top: calc(0.5rem + var(--imageMargin));
+  z-index: 0;
+  cursor: text;
+}
+.placeholder {
+  color: grey;
+  left: 2px;
+}
+.image {
+  border-radius: 50%;
+  height: var(--imageSize);
+  width: var(--imageSize);
+  object-fit: contain;
+}
+.initializeDefault {
+  width: calc(var(--imageSize) - 3rem);
+  filter: brightness(2.1);
+}
+.des {
+  position: absolute;
+  height: var(--imageSize);
+  width: var(--imageSize);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(230, 230, 230);
+  line-height: 0.9rem;
+}
+.camIcon {
+  padding-top: 1rem;
+  padding-bottom: 0.8rem;
+  font-size: 1.3rem !important;
+}
+.next {
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.animate {
+  overflow: hidden;
+  animation: buttonAnimate var(--animation-time);
+}
+.animateOut {
+  width: 0;
+  animation: buttonAnimate var(--animation-time) reverse;
+  overflow: hidden;
+  height: 0;
+  padding: 0;
+}
+.animatePlaceholder {
+  animation: placeholderAnim var(--animation-time);
+  font-size: 0.7rem;
+  transform: translateY(-2rem);
+}
+.undoPlaceholderAnim {
+  animation: revert var(--animation-time);
+  /* color: green; */
+}
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.err {
+  color: red;
+}
+.loadBar {
+  width: var(--animationBarSize);
+  height: var(--animationBarSize);
+  border: calc(var(--animationBarSize) / 20) solid var(--greenish);
+  border-radius: 50%;
+  border-left: calc(var(--animationBarSize) / 20) solid white;
+  border-left: none;
+  animation: rotate 1s infinite;
+}
+.loadText {
+  text-align: center;
+  color: var(--lightGray);
+  font-size: 2rem;
+  -webkit-text-stroke: 1px var(--greenish);
+  width: 80%;
+}
+@keyframes buttonAnimate {
+  0% {
+    width: 0;
+    height: 0;
+    transform: translateY(calc(var(--nextBtnSize) / 2));
+  }
+  100% {
+    width: var(--nextBtnSize);
+    height: var(--nextBtnSize);
+    transform: translateY(0);
+  }
+}
+@keyframes placeholderAnim {
+  0% {
+    font-size: 1rem;
+    transform: translateY(0);
+  }
+  100% {
+    font-size: 0.7rem;
+    transform: translateY(-2rem);
+  }
+}
+@keyframes revert {
+  0% {
+    font-size: 0.7rem;
+    transform: translateY(-2rem);
+  }
+  100% {
+    font-size: 1rem;
+    transform: translateY(0);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+  0% {
+    transform: rotateZ(360deg);
+  }
+}
