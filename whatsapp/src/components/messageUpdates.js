@@ -28,6 +28,18 @@ function MessageUpdates() {
       //fetch ur contacts
       fetcher(`users/${myEmail}/contacts`, (snapshot) => {
         for (let i in snapshot.val()) {
+          //listen on the message
+          firebase
+            .database()
+            .ref(`contacts/${snapshot.val()[i]}/messages`)
+            .on("child_changed", (message) => {
+              storeDS.current.updateMessage(
+                snapshot.val()[i],
+                message.val(),
+                message.key
+              );
+              setContacts((prev) => prev + 1);
+            });
           //given each contact, fetch their last message
           fetcher(
             `contacts/${snapshot.val()[i]}/messages`,
@@ -49,7 +61,6 @@ function MessageUpdates() {
                       : parseInt(Object.keys(message.val())[0]),
                   meetingRoom: snapshot.val()[i],
                 });
-
                 setContacts((prev) => prev + 1);
               });
             },

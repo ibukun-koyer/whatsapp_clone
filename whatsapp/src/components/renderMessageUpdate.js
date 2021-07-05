@@ -33,22 +33,20 @@ function RenderMessageUpdate({
   //   const ref = firebase.database().ref(`${type}s/${meetingRoom}/messages`);
 
   //   ref.on("child_changed", (snapshot) => {
-  //     console.log("child has been changed", snapshot.key + "-renderpager");
   //     const data = snapshot.val();
-  //     console.log(
-  //       parseInt(snapshot.key),
-  //       parseInt(storeDS.current.getByRoom(meetingRoom).createdAt)
-  //     );
+
   //     if (
   //       parseInt(snapshot.key) <=
   //       parseInt(storeDS.current.getByRoom(meetingRoom).createdAt)
   //     ) {
   //       storeDS.current.updateMessage(meetingRoom, data, snapshot.key);
   //       setRender((prev) => !prev);
-  //       context.setRender((prev) => !prev);
+  //       // context.setRender(() => {
+  //       //   return { key: snapshot.key, data };
+  //       // });
   //     }
-  //     // context.setRender({ key: snapshot.key, data: snapshot.val() });
   //   });
+  
   //   return () => {
   //     ref.off("child_changed");
   //   };

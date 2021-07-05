@@ -9,7 +9,6 @@ function MapUpdates({ contacts, setContacts, storeDS }) {
   return (
     <div>
       {storeDS.current.sortedOutput().map((curr, index) => {
-        console.log(curr.meetingRoom);
         return (
           <IndividualMessageUpdate
             setContacts={setContacts}

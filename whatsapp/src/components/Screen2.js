@@ -6,7 +6,6 @@ import { ReplyProvider } from "../context/replyContext";
 import FileSend from "./fileSend";
 function Screen2() {
   const context = useScreen2();
-
   return (
     <div className={classes.screen}>
       <ReplyProvider>

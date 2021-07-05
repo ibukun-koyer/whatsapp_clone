@@ -11,7 +11,7 @@ export function Screen2Provider({ children }) {
     status: "",
     online: "",
   });
-  const [rerender, setReRender] = useState(false);
+  const [rerender, setReRender] = useState(undefined);
   const [imageUrl, setUrl] = useState([]);
   const urlFor = useRef();
 

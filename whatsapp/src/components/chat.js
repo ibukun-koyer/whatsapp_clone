@@ -60,9 +60,7 @@ function Chat({
     const ref = firebase.database().ref(`contacts/${meetingRoom}/messages`);
 
     ref.on("child_changed", (snapshot) => {
-      console.log("child changed on");
-      console.log("child has been changed", snapshot.key);
-      console.log(meetingRoom + " from chat");
+      console.log(snapshot.val().reply ? "has reply" : "does not have reply");
       const data = snapshot.val();
 
       updateDb(data, snapshot.key);
@@ -127,7 +125,6 @@ function Chat({
               });
             }
             if (deleted) {
-        
               getMessages(deleted);
             }
           });
@@ -165,7 +162,6 @@ function Chat({
     }
   });
   const MessagesArr = Object.keys(messages).sort((a, b) => b - a);
-  console.log(messages);
 
   useLayoutEffect(() => {
     if (shouldScrollToBottom && bodyRef.current) {

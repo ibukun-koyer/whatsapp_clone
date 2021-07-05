@@ -19,7 +19,6 @@ function MapMessage({ MessagesArr, messages, myEmail, meetingRoom }) {
           !messages[createdAt].deletedBy ||
           Object.values(messages[createdAt].deletedBy).indexOf(myEmail) === -1
         ) {
-          console.log(messages[createdAt].deletedBy);
           const [
             printedDate,
             ptrToPrev,
@@ -40,7 +39,7 @@ function MapMessage({ MessagesArr, messages, myEmail, meetingRoom }) {
           prev = updatedPrev;
           prevDate = updatedPrevDate;
           currDate = updatedCurrDate;
-          // console.log(printedDate, ptrToPrev, time);
+
           return (
             <IndividualMessages
               messages={messages}
