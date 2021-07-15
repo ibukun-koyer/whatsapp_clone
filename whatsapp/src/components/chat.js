@@ -10,6 +10,8 @@ import firebase from "firebase";
 import classes from "./chat.module.css";
 import ScrollBtn from "./scrollBtn";
 import MapMessage from "./mapMessageArray";
+import { useScreen2 } from "../context/screen2Context";
+
 function Chat({
   meetingRoom,
   myEmail,
@@ -28,6 +30,7 @@ function Chat({
 
   const [messages, setMessages] = useState({});
   const [loading, setLoading] = useState(true);
+  const scr2Ctx = useScreen2();
 
   const updateDb = useCallback(
     (message, key) => {
@@ -56,33 +59,67 @@ function Chat({
     },
     [meetingRoom, myEmail]
   );
+  const cleared = useRef("");
   useEffect(() => {
     const ref = firebase.database().ref(`contacts/${meetingRoom}/messages`);
 
     ref.on("child_changed", (snapshot) => {
-      const data = snapshot.val();
+      if (cleared.current === "" || snapshot.key < cleared.current) {
+        const data = snapshot.val();
 
-      updateDb(data, snapshot.key);
+        updateDb(data, snapshot.key);
 
-      setMessages((prev) => {
-        return { ...prev, [snapshot.key]: data };
-      });
+        setMessages((prev) => {
+          return { ...prev, [snapshot.key]: data };
+        });
+      }
     });
-    // ref.onDisconnect("child_changed", () => {
-    //   console.log("disconnected");
-    // });
-    // return () => {
-    //   ref.off("child_changed");
-    // };
   }, [meetingRoom, updateDb, track]);
+  useEffect(() => {
+    let ref = firebase
+      .database()
+      .ref(`contacts/${meetingRoom}/messages/cleared`);
+    ref.on("child_changed", (snapshot) => {
+      console.log(snapshot.key, myEmail);
+      if (snapshot.key === myEmail) {
+        cleared.current = snapshot.val();
+        queryCursor.current = null;
+        scr2Ctx.setRender({
+          meetingRoom: meetingRoom,
+          type: "contact",
+          snapshot,
+        });
+        setMessages({});
+      }
+    });
+    return () => {
+      console.log("child changed turned off");
+      ref.off("child_changed");
+    };
+  }, [meetingRoom, myEmail]);
 
   const getMessages = useCallback(
-    (numberOfMessagesPerPage) => {
+    async (numberOfMessagesPerPage) => {
       if (meetingRoom) {
         let allMessagesRef = firebase
           .database()
           .ref(`contacts/${meetingRoom}/messages`)
           .orderByKey();
+
+        if (queryCursor.current === null) {
+          let ref = firebase
+            .database()
+            .ref(`contacts/${meetingRoom}/messages/cleared`);
+          cleared.current = await ref
+            .once("value", (snapshot) => {
+              return snapshot;
+            })
+            .then((snapshot) => {
+              if (snapshot.val()[myEmail] !== undefined) {
+                return snapshot.val()[myEmail];
+              }
+            });
+        }
 
         allMessagesRef =
           queryCursor.current === null
@@ -90,6 +127,7 @@ function Chat({
             : allMessagesRef.startAfter(`${queryCursor.current}`);
 
         allMessagesRef
+          .endBefore(`${cleared.current}`)
           .limitToFirst(numberOfMessagesPerPage)
           .once("value", (snapshot) => {
             const paginatedMessages = snapshot.val();

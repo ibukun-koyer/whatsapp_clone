@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { date } from "./helperFiles/calculateDate";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
@@ -10,14 +9,9 @@ const today = new Date();
 
 const yesterday = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
 function IndividualMessageUpdate({
-  setContacts,
   indivInfo,
   currentlyClicked,
   setCurrentlyClicked,
-  contacts,
-  storeDS,
-  setRender,
-  rerender,
 }) {
   //questions to answer
   //2. display name✅
@@ -108,13 +102,6 @@ function IndividualMessageUpdate({
       email={indivInfo.email}
       online={indivInfo.online}
       status={indivInfo.status}
-      //update the message
-      setContacts={setContacts}
-      contacts={contacts}
-      storeDS={storeDS}
-      rerender={rerender}
-      setRender={setRender}
-      createdAt={createdAt}
     />
   );
 }

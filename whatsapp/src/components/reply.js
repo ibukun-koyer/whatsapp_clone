@@ -91,7 +91,6 @@ function Reply({
                   exceptionSubtractionX={160}
                   type={type}
                   link={link}
-                  link=""
                   messages={messages}
                 />
               </div>

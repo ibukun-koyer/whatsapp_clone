@@ -5,7 +5,9 @@ import { defaultUrl } from "./helperFiles/globals";
 import { useEffect, useState } from "react";
 import DropDownForMessage from "./dropDownForMessge";
 import { useScreen2 } from "../context/screen2Context";
-import firebase from "firebase/app";
+import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
+
+import { useAuth } from "../context/authContext";
 
 function RenderMessageUpdate({
   imageUrl,
@@ -19,18 +21,10 @@ function RenderMessageUpdate({
   email,
   online,
   status,
-  contacts,
-  setContacts,
-  storeDS,
-  rerender,
-  setRender,
-  createdAt,
 }) {
   const [hover, setHover] = useState(false);
   const context = useScreen2();
-
-
-
+  const authentication = useAuth();
   useEffect(() => {
     if (currentlyClicked !== meetingRoom) {
       setHover(false);
@@ -107,7 +101,8 @@ function RenderMessageUpdate({
                 setCurrentlyClicked={setCurrentlyClicked}
                 createdAt={meetingRoom}
                 meetingRoom={meetingRoom}
-                externalArr={["Delete chat"]}
+                externalArr={["Clear chat"]}
+                myEmail={replaceInvalid(authentication.currentUser.email)}
               />
             ) : null}
           </span>

@@ -22,22 +22,19 @@ function MessageUpdates() {
     });
   }
 
+  const clearValue = useRef(0);
   useEffect(() => {
-    //fetch ur contacts
+    if (ctx.rerender?.type === "contact") {
+      const thisMessage = storeDS.current.getByRoom(ctx.rerender.meetingRoom);
+      // meetingRoom, newValue, createdAt
+      console.log(ctx.rerender.snapshot.val());
+      storeDS.current.updateMessage(ctx.rerender.meetingRoom, "", 0);
+      clearValue.current = ctx.rerender.snapshot.val();
+      ctx.setRender({});
 
-    if (authentication.currentUser) {
-      const myEmail = replaceInvalid(authentication.currentUser.email);
-      fetcher(`users/${myEmail}/contacts`, (snapshot) => {
-        for (let i in snapshot.val()) {
-        }
-      });
-      fetcher(`users/${myEmail}/groups`, (snapshot) => {
-        for (let i in snapshot.val()) {
-          //listen on the message
-        }
-      });
+      setContacts((prev) => !prev);
     }
-  });
+  }, [ctx.rerender]);
   useEffect(() => {
     if (authentication.currentUser) {
       let ref = [];
@@ -48,6 +45,7 @@ function MessageUpdates() {
         for (let i in snapshot.val()) {
           //listen on the message, check to see if the contact had been in the array before, if not add it to the array not update
           //listen on the message, check to see if the contact had been in the array before, if not add it to the array not update
+
           let temp = firebase
             .database()
             .ref(`contacts/${snapshot.val()[i]}/messages`);
@@ -55,7 +53,8 @@ function MessageUpdates() {
             if (
               parseInt(
                 storeDS.current.getByRoom(snapshot.val()[i]).createdAt
-              ) >= parseInt(message.key)
+              ) >= parseInt(message.key) &&
+              clearValue.current > message.key
             )
               storeDS.current.updateMessage(
                 snapshot.val()[i],
@@ -69,7 +68,31 @@ function MessageUpdates() {
           //given each contact, fetch their last message
           fetcher(
             `contacts/${snapshot.val()[i]}/messages`,
-            (message) => {
+            async (message) => {
+              //get cleared
+
+              let cleared = firebase
+                .database()
+                .ref(`contacts/${snapshot.val()[i]}/messages/cleared`);
+              let escape = await cleared
+                .once("value", (snapshot) => {
+                  return snapshot;
+                })
+                .then((snapshot) => {
+                  if (snapshot.val()[myEmail] !== undefined) {
+                    return snapshot.val()[myEmail];
+                  }
+                });
+
+              let isMessageCleared = false;
+              if (
+                escape === undefined ||
+                escape > parseInt(Object.keys(message.val())[0])
+              ) {
+              } else {
+                isMessageCleared = true;
+              }
+
               //given each message, proceed to get the users info and create an multiindex obj
               fetcher(`users/${i}`, (info) => {
                 storeDS.current.add({
@@ -82,7 +105,8 @@ function MessageUpdates() {
                   type: "contact",
                   email: i,
                   createdAt:
-                    Object.keys(message.val())[0] === "cleared"
+                    Object.keys(message.val())[0] === "cleared" ||
+                    isMessageCleared
                       ? 0
                       : parseInt(Object.keys(message.val())[0]),
                   meetingRoom: snapshot.val()[i],
@@ -163,11 +187,7 @@ function MessageUpdates() {
           You have no messages
         </div>
       ) : (
-        <MapUpdates
-          contacts={contacts}
-          setContacts={setContacts}
-          storeDS={storeDS}
-        />
+        <MapUpdates storeDS={storeDS} />
       )}
     </div>
   );

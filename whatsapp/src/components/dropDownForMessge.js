@@ -55,6 +55,13 @@ function DropDownForMessage({
 
         get();
       }
+      if (context.getOutput.toLowerCase().indexOf("clear") !== -1) {
+        firebase
+          .database()
+          .ref(`contacts/${meetingRoom}/messages/cleared`)
+          .child(myEmail)
+          .set(firebase.firestore.Timestamp.now().seconds * -1);
+      }
       context.setOutput("");
     }
   }, [
@@ -68,6 +75,7 @@ function DropDownForMessage({
     reply,
     type,
     yourEmail,
+    messages,
   ]);
 
   return (

@@ -1,28 +1,27 @@
 import { useState } from "react";
 import IndividualMessageUpdate from "./individualMessageUpdate";
-import { v4 as uuidv4 } from "uuid";
 
-function MapUpdates({ contacts, setContacts, storeDS }) {
+function MapUpdates({ storeDS }) {
   const [currentlyClicked, setCurrentlyClicked] = useState(undefined);
 
-  const [rerender, setRender] = useState(true);
-
+  console.log(storeDS.current.sortedOutput());
   return (
     <div>
       {storeDS.current.sortedOutput().map((curr, index) => {
-        return (
-          <IndividualMessageUpdate
-            setContacts={setContacts}
-            indivInfo={curr}
-            key={index}
-            currentlyClicked={currentlyClicked}
-            setCurrentlyClicked={setCurrentlyClicked}
-            contacts={contacts}
-            storeDS={storeDS}
-            rerender={rerender}
-            setRender={setRender}
-          />
-        );
+        if (!curr) {
+          return null;
+        } else if (curr.createdAt !== 0) {
+          return (
+            <IndividualMessageUpdate
+              indivInfo={curr}
+              key={index}
+              currentlyClicked={currentlyClicked}
+              setCurrentlyClicked={setCurrentlyClicked}
+            />
+          );
+        } else {
+          return null;
+        }
       })}
     </div>
   );

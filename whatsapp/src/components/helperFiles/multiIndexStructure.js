@@ -4,14 +4,15 @@ export class multiIndex {
     this.length = Object.keys(array).length;
   }
   add(obj) {
-    if (obj.createdAt !== 0) {
-      const index = `${obj.meetingRoom}-->${obj.createdAt}`;
+    // if (obj.createdAt !== 0) {
+    const index = `${obj.meetingRoom}-->${obj.createdAt}`;
 
-      if (this.array[index] === undefined) {
-        this.array = { ...this.array, [index]: obj };
-        this.length++;
-      }
+
+    if (this.array[index] === undefined) {
+      this.array = { ...this.array, [index]: obj };
+      this.length++;
     }
+    // }
     return this.array;
   }
 
