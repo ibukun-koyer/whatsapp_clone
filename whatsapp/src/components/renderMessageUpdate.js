@@ -29,37 +29,7 @@ function RenderMessageUpdate({
   const [hover, setHover] = useState(false);
   const context = useScreen2();
 
-  // useEffect(() => {
-  //   const ref = firebase.database().ref(`${type}s/${meetingRoom}/messages`);
 
-  //   ref.on("child_changed", (snapshot) => {
-  //     const data = snapshot.val();
-
-  //     if (
-  //       parseInt(snapshot.key) <=
-  //       parseInt(storeDS.current.getByRoom(meetingRoom).createdAt)
-  //     ) {
-  //       storeDS.current.updateMessage(meetingRoom, data, snapshot.key);
-  //       setRender((prev) => !prev);
-  //       // context.setRender(() => {
-  //       //   return { key: snapshot.key, data };
-  //       // });
-  //     }
-  //   });
-  
-  //   return () => {
-  //     ref.off("child_changed");
-  //   };
-  // }, [
-  //   meetingRoom,
-  //   setContacts,
-  //   type,
-  //   contacts,
-  //   storeDS,
-  //   setRender,
-  //   rerender,
-  //   context,
-  // ]);
 
   useEffect(() => {
     if (currentlyClicked !== meetingRoom) {

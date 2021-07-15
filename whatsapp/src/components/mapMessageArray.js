@@ -11,7 +11,6 @@ function MapMessage({ MessagesArr, messages, myEmail, meetingRoom }) {
   let currDate;
   let prevDate;
   let prev = null;
-
   return (
     <Fragment>
       {MessagesArr.map((createdAt, index) => {

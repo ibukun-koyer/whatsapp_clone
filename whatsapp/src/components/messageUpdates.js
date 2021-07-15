@@ -5,10 +5,11 @@ import { useAuth } from "../context/authContext";
 import { useEffect, useRef, useState } from "react";
 import { multiIndex } from "./helperFiles/multiIndexStructure";
 import MapUpdates from "./mapUpdates";
-
+import { useScreen2 } from "../context/screen2Context";
 function MessageUpdates() {
   const authentication = useAuth();
   const [contacts, setContacts] = useState(0);
+  const ctx = useScreen2();
   const storeDS = useRef(new multiIndex());
   async function fetcher(queryString, callback, addons = []) {
     let ref = firebase.database().ref(queryString);
@@ -22,24 +23,49 @@ function MessageUpdates() {
   }
 
   useEffect(() => {
+    //fetch ur contacts
+
     if (authentication.currentUser) {
+      const myEmail = replaceInvalid(authentication.currentUser.email);
+      fetcher(`users/${myEmail}/contacts`, (snapshot) => {
+        for (let i in snapshot.val()) {
+        }
+      });
+      fetcher(`users/${myEmail}/groups`, (snapshot) => {
+        for (let i in snapshot.val()) {
+          //listen on the message
+        }
+      });
+    }
+  });
+  useEffect(() => {
+    if (authentication.currentUser) {
+      let ref = [];
       const myEmail = replaceInvalid(authentication.currentUser.email);
 
       //fetch ur contacts
       fetcher(`users/${myEmail}/contacts`, (snapshot) => {
         for (let i in snapshot.val()) {
-          //listen on the message
-          firebase
+          //listen on the message, check to see if the contact had been in the array before, if not add it to the array not update
+          //listen on the message, check to see if the contact had been in the array before, if not add it to the array not update
+          let temp = firebase
             .database()
-            .ref(`contacts/${snapshot.val()[i]}/messages`)
-            .on("child_changed", (message) => {
+            .ref(`contacts/${snapshot.val()[i]}/messages`);
+          temp.on("child_changed", (message) => {
+            if (
+              parseInt(
+                storeDS.current.getByRoom(snapshot.val()[i]).createdAt
+              ) >= parseInt(message.key)
+            )
               storeDS.current.updateMessage(
                 snapshot.val()[i],
                 message.val(),
                 message.key
               );
-              setContacts((prev) => prev + 1);
-            });
+
+            setContacts((prev) => prev + 1);
+          });
+          ref.push([temp, snapshot.val()[i]]);
           //given each contact, fetch their last message
           fetcher(
             `contacts/${snapshot.val()[i]}/messages`,
@@ -72,6 +98,23 @@ function MessageUpdates() {
       //fetch ur groups
       fetcher(`users/${myEmail}/groups`, (snapshot) => {
         for (let i in snapshot.val()) {
+          let temp = firebase
+            .database()
+            .ref(`groups/${snapshot.val()[i]}/messages`);
+          temp.on("child_changed", (message) => {
+            if (
+              parseInt(
+                storeDS.current.getByRoom(snapshot.val()[i]).createdAt
+              ) >= parseInt(message.key)
+            )
+              storeDS.current.updateMessage(
+                snapshot.val()[i],
+                message.val(),
+                message.key
+              );
+            setContacts((prev) => prev + 1);
+          });
+          ref.push([temp, snapshot.val()[i]]);
           //given each group, fetch ur last message
           fetcher(
             `groups/${snapshot.val()[i]}/messages`,
@@ -98,10 +141,13 @@ function MessageUpdates() {
           );
         }
       });
+      return () => {
+        for (let i of ref) {
+          i[0].off("child_changed");
+        }
+      };
     }
   }, [authentication.currentUser, setContacts]);
-
-  console.log(storeDS.current);
 
   return (
     <div className={classes.messagesContainer}>

@@ -83,7 +83,7 @@ function ChatPage() {
       send();
     }
   });
-  console.log("data");
+ 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <div

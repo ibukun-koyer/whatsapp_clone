@@ -55,6 +55,9 @@ export class multiIndex {
     this.add(getObj);
   }
   display() {
+    console.log(
+      "=====================================MULTIINDEX ARRAY==================================="
+    );
     for (let i in this.array) {
       console.log(`Key '${i}':`, this.array[i]);
     }

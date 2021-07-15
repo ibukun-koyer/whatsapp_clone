@@ -60,21 +60,22 @@ function Chat({
     const ref = firebase.database().ref(`contacts/${meetingRoom}/messages`);
 
     ref.on("child_changed", (snapshot) => {
-      console.log(snapshot.val().reply ? "has reply" : "does not have reply");
       const data = snapshot.val();
 
       updateDb(data, snapshot.key);
 
       setMessages((prev) => {
-        console.log("child changed off");
         return { ...prev, [snapshot.key]: data };
       });
     });
-    return () => {
-      ref.off("child_changed");
-    };
+    // ref.onDisconnect("child_changed", () => {
+    //   console.log("disconnected");
+    // });
+    // return () => {
+    //   ref.off("child_changed");
+    // };
   }, [meetingRoom, updateDb, track]);
-  console.log(meetingRoom);
+
   const getMessages = useCallback(
     (numberOfMessagesPerPage) => {
       if (meetingRoom) {
