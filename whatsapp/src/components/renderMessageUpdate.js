@@ -56,10 +56,10 @@ function RenderMessageUpdate({
             .database()
             .ref(`groups/${meetingRoom}`)
             .once("value", (snapshot) => snapshot)
-            .then((snapshot) => snapshot.val());
+            .then((snapshot) => snapshot);
 
           const { createdAt, createdBy, groupTitle, imageUrl, users } =
-            snapshot;
+            snapshot.val();
           context.setPage({
             type: "group",
             createdAt,
@@ -67,6 +67,7 @@ function RenderMessageUpdate({
             groupTitle,
             url: imageUrl,
             users,
+            meetingRoom: snapshot.key,
           });
         }
       }}

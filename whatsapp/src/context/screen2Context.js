@@ -14,6 +14,7 @@ export function Screen2Provider({ children }) {
     createdBy: "",
     groupTitle: "",
     users: [],
+    meetingRoom: "",
   });
   const [rerender, setReRender] = useState(undefined);
   const [imageUrl, setUrl] = useState([]);

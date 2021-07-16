@@ -27,20 +27,24 @@ function ChatPage() {
 
   const [meetingRoom, setMeetingRoom] = useState("");
   useEffect(() => {
-    async function getMeetingId() {
-      const ref = firebase
-        .database()
-        .ref(
-          `users/${replaceInvalid(authentication.currentUser.email)}/contacts/${
-            context.state.email
-          }`
-        );
+    if (context.state.email) {
+      async function getMeetingId() {
+        const ref = firebase
+          .database()
+          .ref(
+            `users/${replaceInvalid(
+              authentication.currentUser.email
+            )}/contacts/${context.state.email}`
+          );
 
-      await ref.once("value", (snapshot) => {
-        setMeetingRoom(snapshot.val());
-      });
+        await ref.once("value", (snapshot) => {
+          setMeetingRoom(snapshot.val());
+        });
+      }
+      getMeetingId();
+    } else {
+      setMeetingRoom(context.state.meetingRoom);
     }
-    getMeetingId();
   }, [
     authentication.currentUser.email,
     context.state.email,
@@ -65,10 +69,12 @@ function ChatPage() {
       replyObj,
       messageRef.current.value
     );
-    // console.log(message.message);
+    let path = context.state.email
+      ? `/contacts/${meetingRoom}/messages`
+      : `/groups/${meetingRoom}/messages`;
     const sendRef = firebase
       .database()
-      .ref(`/contacts/${meetingRoom}/messages`)
+      .ref(path)
       .child(firebase.firestore.Timestamp.now().seconds * -1);
 
     sendRef.set(message.message);
@@ -102,9 +108,17 @@ function ChatPage() {
             />
           </div>
           <div className={classes.userInfo}>
-            <div>{context.state.username}</div>
+            <div>
+              {context.state.username
+                ? context.state.username
+                : context.state.groupTitle}
+            </div>
             <div className={classes.onlineStat}>
-              {context.state.online === true ? "Online" : "Last seen at x"}
+              {context.state.online === true
+                ? "Online"
+                : context.state.online === false
+                ? "Last seen at x"
+                : "should be user names"}
             </div>
           </div>
         </div>
@@ -240,7 +254,11 @@ function ChatPage() {
             placeholder="Type a message"
             type="text"
             ref={messageRef}
-            key={context.state.email}
+            key={
+              context.state.email
+                ? context.state.email
+                : context.state.createdAt
+            }
             onChange={() => {
               if (messageRef.current.value.length > 0) {
                 setSendIcon(true);
