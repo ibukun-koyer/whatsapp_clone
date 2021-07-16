@@ -179,6 +179,7 @@ function ChatPage() {
           setScrollToBottom={setScrollToBottom}
           track={context.rerender}
           key={"chat"}
+          type={context.state.type}
         />
       </div>
       <div>

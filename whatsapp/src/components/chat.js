@@ -21,6 +21,7 @@ function Chat({
   shouldScrollToBottom,
   setScrollToBottom,
   track,
+  type,
 }) {
   //paginate variables
   const numberOfMessagesPerPage = 20;
