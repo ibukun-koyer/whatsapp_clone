@@ -12,6 +12,7 @@ function MessageWrap({
   currentlyClicked,
   setCurrentlyClicked,
   meetingRoom,
+  contactType,
 }) {
   const hoverExternal = useHover();
   const [shouldShowHover, setHover] = useState(false);
@@ -65,6 +66,7 @@ function MessageWrap({
               type={messages[createdAt].type}
               link=""
               messages={messages}
+              contactType={contactType}
             />
           </div>
         </div>

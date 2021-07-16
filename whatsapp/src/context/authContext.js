@@ -77,6 +77,7 @@ export function AuthProvider({ children }) {
         //check if user exist
       }
       setCurrentUser(user);
+
     });
     return unsubscribe;
   }, [userInfo.url, userInfo.username]);

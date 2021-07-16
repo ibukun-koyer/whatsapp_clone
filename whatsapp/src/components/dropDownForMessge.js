@@ -17,6 +17,7 @@ function DropDownForMessage({
   externalArr,
   link,
   messages,
+  contactType,
 }) {
   const reply = useReply();
   const context = useOption();
@@ -30,7 +31,7 @@ function DropDownForMessage({
       if (context.getOutput.toLowerCase().indexOf("delete") !== -1) {
         firebase
           .database()
-          .ref(`contacts/${meetingRoom}/messages/${createdAt}/deletedBy`)
+          .ref(`${contactType}s/${meetingRoom}/messages/${createdAt}/deletedBy`)
           .push(myEmail);
         messages[createdAt].deletedBy = { 0: myEmail };
       }
@@ -56,9 +57,10 @@ function DropDownForMessage({
         get();
       }
       if (context.getOutput.toLowerCase().indexOf("clear") !== -1) {
+        console.log(`${contactType}s/${meetingRoom}/messages/cleared`);
         firebase
           .database()
-          .ref(`contacts/${meetingRoom}/messages/cleared`)
+          .ref(`${contactType}s/${meetingRoom}/messages/cleared`)
           .child(myEmail)
           .set(firebase.firestore.Timestamp.now().seconds * -1);
       }

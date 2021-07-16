@@ -15,7 +15,7 @@ import useKey from "./hooks/useKey";
 const Url = 0;
 const type = 1;
 const caption = 2;
-function FileSend({ setImageUrl, imageUrl, meetingRoom }) {
+function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
   const authentication = useAuth();
   const reply = useReply();
   const animationDir = useRef();
@@ -137,7 +137,7 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom }) {
         console.log(replyObj);
         const sendRef = firebase
           .database()
-          .ref(`/contacts/${meetingRoom}/messages`)
+          .ref(`/${contactType}s/${meetingRoom}/messages`)
           .child(Math.ceil(Date.now() / 1000 + parseInt(i)) * -1);
 
         sendRef.set(message.message);

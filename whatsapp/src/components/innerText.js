@@ -1,7 +1,21 @@
 import classes from "./chat.module.css";
 import ReadSVG from "./SVG/readSVG";
 
-function InnerText({ myEmail, messages, createdAt, time }) {
+function InnerText({ myEmail, messages, createdAt, time, type, users }) {
+  let thisUsersName;
+  if (type === "group") {
+    thisUsersName = users.reduce((prev, curr) => {
+      console.log(curr[0]);
+      if (curr[0] === messages[createdAt].createdBy) {
+        // console.log(myEmail, curr[0]);
+        if (myEmail !== curr[0]) return curr[1];
+        else return "Me";
+      }
+      return prev;
+    }, undefined);
+  }
+
+  console.log(thisUsersName);
   const message = messages[createdAt].message
     ? messages[createdAt].message
     : messages[createdAt].messageCaption;
@@ -52,12 +66,14 @@ function InnerText({ myEmail, messages, createdAt, time }) {
   }
   return (
     <span>
+      {type === "group" ? (
+        <div style={{ color: "grey", fontSize: "0.7rem" }}>{thisUsersName}</div>
+      ) : null}
       {messageTAG}
       <span className={classes.wrapTime}>
         <span className={classes.time}>
           {time}{" "}
           {messages[createdAt].createdBy === myEmail ? (
-
             <ReadSVG read={messages[createdAt].readRecipient === "read"} />
           ) : null}
         </span>

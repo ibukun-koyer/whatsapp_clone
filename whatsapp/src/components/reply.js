@@ -17,6 +17,7 @@ function Reply({
   type,
   link,
   messages,
+  contactType,
 }) {
   const hoverExternal = useHover();
   //start of reference
@@ -92,6 +93,7 @@ function Reply({
                   type={type}
                   link={link}
                   messages={messages}
+                  contactType={contactType}
                 />
               </div>
             </div>

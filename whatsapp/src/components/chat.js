@@ -22,6 +22,8 @@ function Chat({
   setScrollToBottom,
   track,
   type,
+  length,
+  users,
 }) {
   //paginate variables
   const numberOfMessagesPerPage = 20;
@@ -37,10 +39,10 @@ function Chat({
     (message, key) => {
       if (myEmail === message.createdBy) {
         if (message.readRecipient !== "read") {
-          if (message.seenBy && message.seenBy.length === 1) {
+          if (message.seenBy && message.seenBy.length === length) {
             firebase
               .database()
-              .ref(`contacts/${meetingRoom}/messages/${key}/readRecipient`)
+              .ref(`${type}s/${meetingRoom}/messages/${key}/readRecipient`)
               .set("read");
             message.readRecipient = "read";
           }
@@ -53,7 +55,7 @@ function Chat({
           }
           firebase
             .database()
-            .ref(`contacts/${meetingRoom}/messages/${key}/seenBy/${idx}`)
+            .ref(`${type}s/${meetingRoom}/messages/${key}/seenBy/${idx}`)
             .set(myEmail);
         }
       }
@@ -62,10 +64,10 @@ function Chat({
   );
   const cleared = useRef("");
   useEffect(() => {
-    const ref = firebase.database().ref(`contacts/${meetingRoom}/messages`);
+    const ref = firebase.database().ref(`${type}s/${meetingRoom}/messages`);
 
     ref.on("child_changed", (snapshot) => {
-      if (cleared.current === "" || snapshot.key < cleared.current) {
+      if (!cleared.current || snapshot.key < cleared.current) {
         const data = snapshot.val();
 
         updateDb(data, snapshot.key);
@@ -75,19 +77,22 @@ function Chat({
         });
       }
     });
+    // return () => {
+    //   ref.off("child_changed");
+    // };
   }, [meetingRoom, updateDb, track]);
+
   useEffect(() => {
     let ref = firebase
       .database()
-      .ref(`contacts/${meetingRoom}/messages/cleared`);
+      .ref(`${type}s/${meetingRoom}/messages/cleared`);
     ref.on("child_changed", (snapshot) => {
-      console.log(snapshot.key, myEmail);
       if (snapshot.key === myEmail) {
         cleared.current = snapshot.val();
         queryCursor.current = null;
         scr2Ctx.setRender({
           meetingRoom: meetingRoom,
-          type: "contact",
+          type,
           snapshot,
         });
         setMessages({});
@@ -104,13 +109,13 @@ function Chat({
       if (meetingRoom) {
         let allMessagesRef = firebase
           .database()
-          .ref(`contacts/${meetingRoom}/messages`)
+          .ref(`${type}s/${meetingRoom}/messages`)
           .orderByKey();
 
         if (queryCursor.current === null) {
           let ref = firebase
             .database()
-            .ref(`contacts/${meetingRoom}/messages/cleared`);
+            .ref(`${type}s/${meetingRoom}/messages/cleared`);
           cleared.current = await ref
             .once("value", (snapshot) => {
               return snapshot;
@@ -226,6 +231,8 @@ function Chat({
         MessagesArr={MessagesArr}
         messages={messages}
         myEmail={myEmail}
+        type={type}
+        users={users}
       />
     </Fragment>
   );

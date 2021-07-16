@@ -25,6 +25,7 @@ function Screen2() {
             setImageUrl={context.setImageUrl}
             imageUrl={context.imageUrl}
             meetingRoom={context.getMeetingRoom()}
+            contactType={context.state.type}
           />
         ) : null}
       </ReplyProvider>

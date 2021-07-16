@@ -16,6 +16,8 @@ function IndividualMessages({
   currentlyClicked,
   setCurrentlyClicked,
   meetingRoom,
+  type,
+  users,
 }) {
   // if (messages[createdAt].type === "text") {
   return (
@@ -48,6 +50,7 @@ function IndividualMessages({
             currentlyClicked={currentlyClicked}
             setCurrentlyClicked={setCurrentlyClicked}
             meetingRoom={meetingRoom}
+            contactType={type}
           >
             <Reply
               reply={messages[createdAt].reply}
@@ -65,6 +68,7 @@ function IndividualMessages({
               type={messages[createdAt].type}
               link={messages[createdAt].links ? messages[createdAt].links : ""}
               messages={messages}
+              contactType={type}
             />
             {/* 
               link, */}
@@ -86,6 +90,7 @@ function IndividualMessages({
                 }
                 caption={messages[createdAt].messageCaption}
                 messages={messages}
+                contactType={type}
               />
             ) : null}
 
@@ -94,6 +99,8 @@ function IndividualMessages({
               messages={messages}
               createdAt={createdAt}
               time={time}
+              type={type}
+              users={users}
             />
           </MessageBkg>
         </HoverProvider>

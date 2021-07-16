@@ -4,7 +4,6 @@ import IndividualMessageUpdate from "./individualMessageUpdate";
 function MapUpdates({ storeDS }) {
   const [currentlyClicked, setCurrentlyClicked] = useState(undefined);
 
-  console.log(storeDS.current.sortedOutput());
   return (
     <div>
       {storeDS.current.sortedOutput().map((curr, index) => {

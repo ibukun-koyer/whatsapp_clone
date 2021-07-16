@@ -207,7 +207,7 @@ function AddGroup() {
                 prev: pageNames.addGroup,
                 curr: pageNames.groupInfo,
                 transferData: selectedIcons.map((curr) => {
-                  return curr.email;
+                  return [curr.email, curr.username];
                 }),
               })
             }

@@ -28,11 +28,19 @@ function GroupInfo() {
   // console.log(context.state.transferData);
   const title = titleRef.current ? titleRef.current.value : "";
   useEffect(() => {
-    function createGroup(url) {
+    async function createGroup(url) {
+      const myUsername = await firebase
+        .database()
+        .ref(
+          `users/${replaceInvalid(authentication.currentUser.email)}/username`
+        )
+        .once("value", (snapshot) => snapshot)
+        .then((snapshot) => snapshot.val());
       const users = [
         ...context.state.transferData,
-        replaceInvalid(authentication.currentUser.email),
+        [replaceInvalid(authentication.currentUser.email), myUsername],
       ];
+
       const groupInitialize = {
         groupTitle: title,
         imageUrl: url,
@@ -47,7 +55,7 @@ function GroupInfo() {
         .ref("/groups")
         .push(groupInitialize).key;
       for (let i of users) {
-        firebase.database().ref(`/users/${i}/groups`).push(groupRef);
+        firebase.database().ref(`/users/${i[0]}/groups`).push(groupRef);
       }
       context.setPage({
         prev: pageNames.groupInfo,

@@ -7,7 +7,6 @@ export class multiIndex {
     // if (obj.createdAt !== 0) {
     const index = `${obj.meetingRoom}-->${obj.createdAt}`;
 
-
     if (this.array[index] === undefined) {
       this.array = { ...this.array, [index]: obj };
       this.length++;
@@ -16,27 +15,39 @@ export class multiIndex {
     return this.array;
   }
 
-  indexOfTime(time, start) {
+  indexOf(time, start, what) {
+    const splitIndexes = { room: 0, time: 1 };
     let index = -1;
     let found = 0;
     for (let i = 0; i < Object.keys(this.array).length; i++) {
-      if (Object.keys(this.array)[i].indexOf(time) !== -1) {
+      let indexStr = Object.keys(this.array)[i].split("-->")[
+        splitIndexes[what]
+      ];
+      indexStr = what === "room" ? indexStr : parseInt(indexStr);
+      if (indexStr === time) {
         if (found === start) {
           index = i;
+
           break;
         }
         found++;
       }
     }
+
     return index;
   }
   indexOfRoom(meetingRoom) {
-    return this.indexOfTime(meetingRoom, 0);
+    return this.indexOf(meetingRoom, 0, "room");
   }
   getByTime(time, start) {
-    return this.array[Object.keys(this.array)[this.indexOfTime(time, start)]];
+    return this.array[
+      Object.keys(this.array)[this.indexOf(time, start, "time")]
+    ];
   }
   getByRoom(meetingRoom) {
+    console.log(
+      this.array[Object.keys(this.array)[this.indexOfRoom(meetingRoom)]]
+    );
     return this.array[Object.keys(this.array)[this.indexOfRoom(meetingRoom)]];
   }
   remove(meetingRoom) {
@@ -51,7 +62,7 @@ export class multiIndex {
 
     getObj.message = { [createdAt]: newValue };
 
-    getObj.createdAt = createdAt;
+    getObj.createdAt = createdAt === "cleared" ? getObj.createdAt : createdAt;
 
     this.add(getObj);
   }
@@ -83,6 +94,7 @@ export class multiIndex {
       }
       output.push(this.getByTime(i, number_of_same));
     }
+
     return output;
   }
 }

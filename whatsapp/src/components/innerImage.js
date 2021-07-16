@@ -16,6 +16,7 @@ function InnerImage({
   type,
   link,
   caption,
+  contactType,
 }) {
   const fullscreen = useFull();
   const hoverExternal = useHover();
@@ -60,6 +61,7 @@ function InnerImage({
               type={type}
               link={link}
               messages={messages}
+              contactType={contactType}
             />
           </div>
         </div>

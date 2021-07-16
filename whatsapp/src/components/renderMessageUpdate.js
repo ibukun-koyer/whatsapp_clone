@@ -22,6 +22,7 @@ function RenderMessageUpdate({
   online,
   status,
 }) {
+  console.log(type);
   const [hover, setHover] = useState(false);
   const context = useScreen2();
   const authentication = useAuth();
@@ -121,6 +122,7 @@ function RenderMessageUpdate({
                 meetingRoom={meetingRoom}
                 externalArr={["Clear chat"]}
                 myEmail={replaceInvalid(authentication.currentUser.email)}
+                contactType={type}
               />
             ) : null}
           </span>

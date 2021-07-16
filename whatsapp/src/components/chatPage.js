@@ -43,7 +43,7 @@ function ChatPage() {
       }
       getMeetingId();
     } else {
-      setMeetingRoom(context.state.meetingRoom);
+      if (!meetingRoom) setMeetingRoom(context.state.meetingRoom);
     }
   }, [
     authentication.currentUser.email,
@@ -78,7 +78,6 @@ function ChatPage() {
       .child(firebase.firestore.Timestamp.now().seconds * -1);
 
     sendRef.set(message.message);
-    // sendRef.update({ message: message.message.message });
     sendRef.update({ data: { d: false } });
 
     if (messageRef.current) {
@@ -180,6 +179,8 @@ function ChatPage() {
           track={context.rerender}
           key={"chat"}
           type={context.state.type}
+          length={context.state.email ? 1 : context.state.users.length - 1}
+          users={context.state.users}
         />
       </div>
       <div>

@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 // import classes from "./chat.module.css";
 import IndividualMessages from "./individualMessages";
 import { calcMessageEssentialData } from "./helperFiles/calcMessageEssentialData";
-function MapMessage({ MessagesArr, messages, myEmail, meetingRoom }) {
+function MapMessage({ MessagesArr, messages, myEmail, meetingRoom, type, users }) {
   const [currentlyClicked, setCurrentlyClicked] = useState(undefined);
 
   const cutOffDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
@@ -52,6 +52,8 @@ function MapMessage({ MessagesArr, messages, myEmail, meetingRoom }) {
               currentlyClicked={currentlyClicked}
               setCurrentlyClicked={setCurrentlyClicked}
               meetingRoom={meetingRoom}
+              type={type}
+              users={users}
             />
           );
         } else {

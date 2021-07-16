@@ -24,11 +24,14 @@ function MessageUpdates() {
 
   const clearValue = useRef(0);
   useEffect(() => {
-    if (ctx.rerender?.type === "contact") {
+    if (ctx.rerender?.type) {
       const thisMessage = storeDS.current.getByRoom(ctx.rerender.meetingRoom);
-      // meetingRoom, newValue, createdAt
-      console.log(ctx.rerender.snapshot.val());
-      storeDS.current.updateMessage(ctx.rerender.meetingRoom, "", 0);
+
+      storeDS.current.updateMessage(
+        ctx.rerender.meetingRoom,
+        "",
+        ctx.rerender.type === "group" ? "cleared" : 0
+      );
       clearValue.current = ctx.rerender.snapshot.val();
       ctx.setRender({});
 
@@ -54,13 +57,14 @@ function MessageUpdates() {
               parseInt(
                 storeDS.current.getByRoom(snapshot.val()[i]).createdAt
               ) >= parseInt(message.key) &&
-              clearValue.current > message.key
-            )
+              (!clearValue.current || clearValue.current > message.key)
+            ) {
               storeDS.current.updateMessage(
                 snapshot.val()[i],
                 message.val(),
                 message.key
               );
+            }
 
             setContacts((prev) => prev + 1);
           });
@@ -126,33 +130,64 @@ function MessageUpdates() {
             .database()
             .ref(`groups/${snapshot.val()[i]}/messages`);
           temp.on("child_changed", (message) => {
+            console.log(
+              parseInt(
+                storeDS.current.getByRoom(snapshot.val()[i]).createdAt
+              ) >= parseInt(message.key) &&
+                (!clearValue.current || clearValue.current > message.key)
+            );
             if (
               parseInt(
                 storeDS.current.getByRoom(snapshot.val()[i]).createdAt
-              ) >= parseInt(message.key)
-            )
+              ) >= parseInt(message.key) &&
+              (!clearValue.current || clearValue.current > message.key)
+            ) {
               storeDS.current.updateMessage(
                 snapshot.val()[i],
                 message.val(),
                 message.key
               );
+            }
+
             setContacts((prev) => prev + 1);
           });
           ref.push([temp, snapshot.val()[i]]);
           //given each group, fetch ur last message
           fetcher(
             `groups/${snapshot.val()[i]}/messages`,
-            (message) => {
+            async (message) => {
+              let cleared = firebase
+                .database()
+                .ref(`groups/${snapshot.val()[i]}/messages/cleared`);
+              let escape = await cleared
+                .once("value", (snapshot) => {
+                  return snapshot;
+                })
+                .then((snapshot) => {
+                  if (snapshot.val()[myEmail] !== undefined) {
+                    return snapshot.val()[myEmail];
+                  }
+                });
+
+              let isMessageCleared = false;
+              if (
+                escape === undefined ||
+                escape > parseInt(Object.keys(message.val())[0])
+              ) {
+              } else {
+                isMessageCleared = true;
+              }
               //given each message, fetch the group info and also add that to the multiindexed obj
               fetcher(`groups/${snapshot.val()[i]}`, (info) => {
                 storeDS.current.add({
-                  message: message.val(),
+                  message: isMessageCleared ? { cleared: "" } : message.val(),
                   createdBy: info.val().createdBy,
                   url: info.val().imageUrl,
                   groupTitle: info.val().groupTitle,
                   groupUsers: info.val().users,
                   createdAt:
-                    Object.keys(message.val())[0] === "cleared"
+                    Object.keys(message.val())[0] === "cleared" ||
+                    isMessageCleared
                       ? info.val().createdAt
                       : parseInt(Object.keys(message.val())[0]),
                   type: "group",
@@ -173,6 +208,7 @@ function MessageUpdates() {
     }
   }, [authentication.currentUser, setContacts]);
 
+  storeDS.current.display();
   return (
     <div className={classes.messagesContainer}>
       {contacts === 0 ? (
