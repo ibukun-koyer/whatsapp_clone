@@ -41,7 +41,11 @@ function ChatPage() {
       });
     }
     getMeetingId();
-  }, [authentication.currentUser.email, context.state.email]);
+  }, [
+    authentication.currentUser.email,
+    context.state.email,
+    context.state.createdAt,
+  ]);
 
   function send() {
     const replyObj = reply.isClosed()
@@ -83,7 +87,7 @@ function ChatPage() {
       send();
     }
   });
- 
+
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <div

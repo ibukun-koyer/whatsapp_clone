@@ -8,7 +8,7 @@ import { useScreen2 } from "../context/screen2Context";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 
 import { useAuth } from "../context/authContext";
-
+import firebase from "firebase";
 function RenderMessageUpdate({
   imageUrl,
   displayName,
@@ -40,7 +40,7 @@ function RenderMessageUpdate({
           setHover(false);
         }
       }}
-      onClick={() => {
+      onClick={async () => {
         if (type === "contact") {
           context.setPage({
             type: "contact",
@@ -51,8 +51,25 @@ function RenderMessageUpdate({
             online,
           });
         }
+        if (type === "group") {
+          let snapshot = await firebase
+            .database()
+            .ref(`groups/${meetingRoom}`)
+            .once("value", (snapshot) => snapshot)
+            .then((snapshot) => snapshot.val());
+
+          const { createdAt, createdBy, groupTitle, imageUrl, users } =
+            snapshot;
+          context.setPage({
+            type: "group",
+            createdAt,
+            createdBy,
+            groupTitle,
+            url: imageUrl,
+            users,
+          });
+        }
       }}
-      //   onClick={handleClick}
     >
       <div className={classes.new + " " + ownClass.updatedIcon}>
         <div className={ownClass.icon} style={{ backgroundColor: "#dfe5e7" }}>

@@ -12,7 +12,13 @@ function Screen2() {
         {context.state.type === "" ? (
           <DemoPage />
         ) : (
-          <ChatPage key={context.state.email} />
+          <ChatPage
+            key={
+              context.state.email
+                ? context.state.email
+                : context.state.createdAt
+            }
+          />
         )}
         {context.imageUrl.length ? (
           <FileSend

@@ -10,6 +10,10 @@ export function Screen2Provider({ children }) {
     url: "",
     status: "",
     online: "",
+    createdAt: "",
+    createdBy: "",
+    groupTitle: "",
+    users: [],
   });
   const [rerender, setReRender] = useState(undefined);
   const [imageUrl, setUrl] = useState([]);

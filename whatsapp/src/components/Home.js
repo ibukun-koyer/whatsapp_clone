@@ -56,7 +56,7 @@ function Home() {
   useEffect(() => {
     const handleResize = () => {
       if (option.getShow) {
-        console.log("jnkjefnj");
+     
         option.setShow(false);
       }
     };
