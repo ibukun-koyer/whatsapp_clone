@@ -9,6 +9,14 @@
   height: calc(100% - 110px);
   background-color: var(--darkGray);
 }
+.in {
+  transition: 0.3s;
+  opacity: 1;
+}
+.out {
+  transition: 0.3s;
+  opacity: 0;
+}
 .flex,
 .body {
   display: flex;
@@ -29,7 +37,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  margin-top: var(--imageMargin);
+  padding-top: var(--imageMargin);
   margin-bottom: var(--imageMargin);
 }
 .imagePicker {
@@ -93,7 +101,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
   color: rgb(230, 230, 230);
+  background-color: rgba(0, 0, 0, 0.5);
   line-height: 0.9rem;
 }
 .camIcon {

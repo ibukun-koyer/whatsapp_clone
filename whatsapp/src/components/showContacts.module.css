@@ -1,8 +1,9 @@
 :root {
   --greenish: #00bfa5;
+  --pageHeaderHeight: 110px;
 }
 .header {
-  height: 110px;
+  height: var(--pageHeaderHeight);
   background-color: var(--greenish);
   display: flex;
   justify-content: flex-end;

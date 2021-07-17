@@ -1,8 +1,8 @@
 export function onImageChange(fileObj, setImageError, setImageRef) {
   console.log(fileObj);
   if (fileObj !== undefined) {
-    if (fileObj.size > 100000) {
-      setImageError("Image size must not exceed 100 KB");
+    if (fileObj.size > 1048576) {
+      setImageError("Image size must not exceed 1MB");
       console.log("big file");
     } else if (!/^(image|video)/i.test(fileObj.type)) {
       setImageError("File must be an image or a video");
@@ -56,7 +56,7 @@ export function onImageSubmit(
         )
           .then((res) => res.json())
           .then((res) => {
-            console.log(res.secure_url);
+
             onImageStoredCallback(res.secure_url);
           })
           .catch((err) => onFailed(err));

@@ -12,6 +12,7 @@ import { useAuth } from "../context/authContext";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 import SearchBarOption2 from "./SearchBarOption2";
 import { defaultUrl } from "./helperFiles/globals";
+import DisplayImage from "./displayImage";
 function GroupInfo() {
   const authentication = useAuth();
   const [imageUrl, setImageUrl] = useState(defaultUrl);
@@ -127,43 +128,11 @@ function GroupInfo() {
           />
           <div className={classes.body}>
             <div className={classes.flex + " " + classes.pad}>
-              <div className={classes.wrapImage}>
-                <div className={classes.userImage}>
-                  <img
-                    src={imageUrl}
-                    alt="groupIcon"
-                    className={
-                      classes.image +
-                      " " +
-                      (defaultUrl === imageUrl ? classes.initializeDefault : "")
-                    }
-                  />
-                </div>
-
-                <input
-                  className={classes.imagePicker}
-                  id="upload"
-                  type="file"
-                  accept="image/*"
-                  multiple={false}
-                  onChange={handleImageChange}
-                />
-                <div className={classes.des}>
-                  <i
-                    className={`fa fa-camera ${classes.camIcon}`}
-                    aria-hidden="true"
-                  ></i>
-                  <div
-                    style={{
-                      width: "6rem",
-                      textAlign: "center",
-                      fontSize: "0.8rem",
-                    }}
-                  >
-                    ADD GROUP ICON
-                  </div>
-                </div>
-              </div>
+              <DisplayImage
+                imageUrl={imageUrl}
+                handleImageChange={handleImageChange}
+                text="ADD GROUP ICON"
+              />
               {imageError === "" ? null : (
                 <div className={classes.center}>
                   <div className={classes.err}>*{imageError}</div>

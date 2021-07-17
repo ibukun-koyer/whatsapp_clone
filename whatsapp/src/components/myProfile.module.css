@@ -1,0 +1,11 @@
+.body {
+  height: calc(100% - var(--pageHeaderHeight));
+  background-color: var(--lightGray);
+  overflow: auto;
+}
+.info {
+  color: var(--iconColor);
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  font-weight: 100;
+}

@@ -25,6 +25,7 @@ function AddGroup() {
   const [changed, setChanged] = useState("");
   const [contacts, setContacts] = useState([]);
   const [selectedIcons, setSelectedIcons] = useState([]);
+  const prevLoc = useRef(context.state.prev);
 
   //get contacts, to be used to add to group
   useEffect(() => {
@@ -115,7 +116,7 @@ function AddGroup() {
         onClick={() => {
           context.setPage({
             prev: pageNames.addGroup,
-            curr: pageNames.showContacts,
+            curr: prevLoc.current,
           });
         }}
       />

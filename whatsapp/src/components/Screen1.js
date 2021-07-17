@@ -5,6 +5,7 @@ import { useScreen1 } from "../context/screen1Context";
 import { pageNames } from "./helperFiles/globals";
 import AddGroup from "./AddGroup";
 import GroupInfo from "./groupInfo";
+import MyProfile from "./myProfile";
 function Screen1() {
   const context = useScreen1();
 
@@ -27,6 +28,10 @@ function Screen1() {
       {context.state.curr === pageNames.groupInfo ||
       context.state.prev === pageNames.groupInfo ? (
         <GroupInfo />
+      ) : null}
+      {context.state.curr === pageNames.myProfile ||
+      context.state.prev === pageNames.myProfile ? (
+        <MyProfile />
       ) : null}
     </div>
   );

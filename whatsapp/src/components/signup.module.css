@@ -1,13 +1,17 @@
+:root {
+  --extremeDarkGreen: #009688;
+  --bkgWhiteColor: #d9dbd6;
+}
 .bkg {
   width: 100%;
 }
 .green {
-  background-color: #009688;
+  background-color: var(--extremeDarkGreen);
   height: 30%;
   width: 100%;
 }
 .white {
-  background-color: #d9dbd6;
+  background-color: var(--bkgWhiteColor);
   height: 70%;
   width: 100%;
 }

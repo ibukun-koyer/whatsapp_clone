@@ -1,0 +1,52 @@
+:root {
+  --profileInputBkgColor: white;
+}
+.body {
+  width: 100%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  background-color: var(--profileInputBkgColor);
+  box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.1);
+}
+
+.headerText {
+  color: var(--extremeDarkGreen);
+}
+.inputContainer {
+  width: 100%;
+}
+.relativeBody {
+  width: 100%;
+  position: relative;
+  padding-right: 15%;
+  box-sizing: border-box;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.absolute {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: var(--iconColor);
+}
+.absolute svg {
+  cursor: pointer;
+}
+.clickedBody {
+  border-bottom: 0.15rem solid var(--greenish);
+}
+.input {
+  outline: none;
+  border: none;
+  background-color: none;
+  color: inherit;
+  width: 100%;
+  resize: none;
+  height: fit-content;
+}
+.remainingChars {
+  padding-right: 5px;
+}

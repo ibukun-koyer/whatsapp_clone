@@ -2,7 +2,7 @@
   --darkGray: rgb(231, 231, 231);
   --lightGray: rgb(245, 244, 244);
   --lighterGray: rgb(250, 250, 250);
-  --ppWidth: 60%;
+  --ppWidth: 80%;
   --SearchPadding: 0.3rem;
   --navHeight: 56px;
 }
@@ -24,14 +24,16 @@
 }
 .pp {
   width: var(--ppWidth);
+  cursor: pointer;
 }
 .nav {
   width: calc(100% - var(--ppWidth));
   display: flex;
   color: grey;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .nav svg {
+  cursor: pointer;
   transition: 0.5s;
 }
 .nav svg:hover {
@@ -43,6 +45,12 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  overflow: hidden;
+}
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .searchBar {
   width: 100%;

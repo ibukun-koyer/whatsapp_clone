@@ -5,21 +5,6 @@ import { replaceInvalid } from "../components/helperFiles/replaceEmailInvalid";
 import { User } from "../components/helperFiles/userSchema";
 const AuthContext = React.createContext();
 
-// class User {
-//   constructor(uid, username, url) {
-//     this.data = {
-//       uid: `${uid}`,
-//       username: `${username}`,
-//       url: `${url}`,
-//       status_pics_list: {},
-//       contact: {},
-//       archieved: {},
-//       status: "Hey there! I am using WhatsApp.",
-//       online: true,
-//       settings: { backgroundColor: "beige" },
-//     };
-//   }
-// }
 export function AuthProvider({ children }) {
   const [userInfo, setUserInfo] = useState({ username: "", url: "" });
   const [currentUser, setCurrentUser] = useState();

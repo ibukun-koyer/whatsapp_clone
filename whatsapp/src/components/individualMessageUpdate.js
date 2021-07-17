@@ -29,7 +29,9 @@ function IndividualMessageUpdate({
 
   // calculate date based on a function specified in helperfiles
   let messageDate = date(createdAt, today, yesterday, cutOffDate);
-  const myEmail = replaceInvalid(authentication.currentUser.email);
+  const myEmail = authentication.currentUser
+    ? replaceInvalid(authentication.currentUser.email)
+    : "";
   // the key to the message, since message is an obj
   let messageKey = Object.keys(message)[0];
 
