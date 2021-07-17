@@ -6,7 +6,7 @@ import { pageNames } from "./helperFiles/globals";
 import MessageUpdates from "./messageUpdates";
 function AllMessages() {
   const context = useScreen1();
-  // const [searchIconClicked, setSearchIconClick] = useState(false);
+  // this is what happens when you click on the show contacts, allows me to animate show contacts in and this page out
   function showContacts() {
     context.setPage({
       prev: pageNames.allMessages,
@@ -15,11 +15,16 @@ function AllMessages() {
   }
   return (
     <Fragment>
+      {/* render top section */}
       <div className={classes.top + " " + classes.darkGray}>
+        {/* render my profile picture */}
         <div className={classes.pp}>
+          {/* the image that will be inside the profile picture circle */}
           <div className={classes.img}></div>
         </div>
+        {/* this contains the three options, showContacts, settings, status */}
         <div className={classes.nav}>
+          {/* all svg icons */}
           <svg
             id="ee51d023-7db6-4950-baf7-c34874b80976"
             xmlns="http://www.w3.org/2000/svg"
@@ -57,11 +62,13 @@ function AllMessages() {
           </svg>
         </div>
       </div>
+      {/* this is the searchbar */}
       <SearchBar
         def={false}
         placeholder="Search or start new chat"
         shadow={true}
       />
+      {/* this is the part that renders the messages in all messages */}
       <MessageUpdates />
     </Fragment>
   );

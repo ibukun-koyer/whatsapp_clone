@@ -1,7 +1,10 @@
 import classes from "./dropDown.module.css";
 import { useOption } from "../context/showOptions";
+
+// this function defines the dropdown design
 function DropDown({ top, left, options }) {
   const option = useOption();
+  // size and width calculated based on the values we have sent to the option context by dropdownmenu
   return (
     <div
       style={{
@@ -15,6 +18,7 @@ function DropDown({ top, left, options }) {
       }}
       className={classes.menu}
     >
+      {/* this prints out all the options */}
       {options.map((opt, index) => {
         return (
           <div

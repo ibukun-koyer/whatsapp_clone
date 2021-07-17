@@ -26,7 +26,10 @@ function ChatPage() {
   const bodyRef = useRef();
 
   const [meetingRoom, setMeetingRoom] = useState("");
+
+  // get the meeting room of the session
   useEffect(() => {
+    // if context.state.email then it is a contact
     if (context.state.email) {
       async function getMeetingId() {
         const ref = firebase
@@ -43,6 +46,7 @@ function ChatPage() {
       }
       getMeetingId();
     } else {
+      // set meeting room to the stored meeting room if it is a group
       if (!meetingRoom) setMeetingRoom(context.state.meetingRoom);
     }
   }, [
@@ -51,7 +55,9 @@ function ChatPage() {
     context.state.createdAt,
   ]);
 
+  // send a message
   function send() {
+    // if reply isn't opened, we dont account for it, else we define a reply object
     const replyObj = reply.isClosed()
       ? ""
       : {
@@ -61,14 +67,17 @@ function ChatPage() {
           type: reply.getType(),
           link: reply.getLink(),
         };
+    //if reply is open, close it
     if (!reply.isClosed()) {
       reply.close();
     }
+    //create a new text type, defined in messageTypeTemplates in helperfiles, that creates an object to be posted to the db
     const message = new Text(
       replaceInvalid(authentication.currentUser.email),
       replyObj,
       messageRef.current.value
     );
+    //this defines where we send the message to depending on the type of contact this is
     let path = context.state.email
       ? `/contacts/${meetingRoom}/messages`
       : `/groups/${meetingRoom}/messages`;
@@ -78,12 +87,15 @@ function ChatPage() {
       .child(firebase.firestore.Timestamp.now().seconds * -1);
 
     sendRef.set(message.message);
+    //update message, so that we dont need to use child added in chat, the data here is very useless
     sendRef.update({ data: { d: false } });
 
+    //clear message
     if (messageRef.current) {
       messageRef.current.value = "";
     }
   }
+  //if you click enter, and the message is focused, and the lenght is not 0, submit the message
   useKey("Enter", () => {
     if (
       messageRef.current.value.length &&
@@ -95,10 +107,12 @@ function ChatPage() {
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
+      {/* render the nav of page */}
       <div
         className={external.top + " " + external.darkGray + " " + classes.nav}
       >
         <div className={external.pp + " " + classes.ppUpdated}>
+          {/* render the profile picture of user */}
           <div className={external.img} style={{ overflow: "hidden" }}>
             <img
               src={context.state.url}
@@ -106,12 +120,14 @@ function ChatPage() {
               className={classes.pp}
             />
           </div>
+          {/* render the username or ggrouptitle */}
           <div className={classes.userInfo}>
             <div>
               {context.state.username
                 ? context.state.username
                 : context.state.groupTitle}
             </div>
+            {/* render status or members of the group */}
             <div className={classes.onlineStat}>
               {context.state.online === true
                 ? "Online"
@@ -122,6 +138,7 @@ function ChatPage() {
           </div>
         </div>
 
+        {/* render the navoptions, search and dropdown on chat page nav */}
         <div className={classes.navOptions}>
           {" "}
           <i className="fa fa-search" aria-hidden="true"></i>
@@ -129,6 +146,7 @@ function ChatPage() {
         </div>
       </div>
 
+      {/* if reply, decreaseHeight of text section - background color    */}
       <div
         className={
           classes.backgroundColor +
@@ -136,6 +154,7 @@ function ChatPage() {
           (reply.isClosed() ? "" : classes.decreaseHeight)
         }
       ></div>
+      {/* if reply, decreaseHeight of text section - background    */}
       <div
         className={
           classes.background +
@@ -143,10 +162,12 @@ function ChatPage() {
           (reply.isClosed() ? "" : classes.decreaseHeight)
         }
       ></div>
+      {/* if reply, decreaseHeight of text section - body    */}
       <div
         className={
           classes.body + " " + (reply.isClosed() ? "" : classes.decreaseHeight)
         }
+        // onscroll check to see if we need to scroll to bottom of page or top of screen and so on
         onScroll={(e) => {
           const divHeight = parseInt(window.getComputedStyle(e.target).height);
 
@@ -184,6 +205,7 @@ function ChatPage() {
         />
       </div>
       <div>
+        {/* if reply, render reply */}
         {reply.isClosed() ? null : (
           <div className={classes.replySection}>
             <div className={classes.replyBox}>

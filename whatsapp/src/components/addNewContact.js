@@ -26,6 +26,7 @@ function AddNewContact() {
     setAnimateOff(true);
   });
   const emailRef = useRef();
+  // this function checks to see if user exist
   useEffect(() => {
     if (checkExistentce === true) {
       const ref = firebase
@@ -34,7 +35,7 @@ function AddNewContact() {
       console.log(replaceInvalid(emailRef.current.value));
       ref.once("value", (snapshot) => {
         const obj = snapshot.val();
-        console.log(obj);
+        //if it does not exist, send error using feedback state
         if (!obj) {
           console.log("user does not exist");
           setFeedback({
@@ -44,8 +45,7 @@ function AddNewContact() {
               "please verify that the email address added is correct and try again.",
           });
         } else {
-          //create new contact meetup
-          //perform a check here to see if the contact has been stored already
+          //if u add urself
           if (obj.uid === authentication.currentUser.uid) {
             console.log("You cannot add urself");
             setFeedback({
@@ -54,17 +54,18 @@ function AddNewContact() {
               fbDes: "You are unable to add yourself to your contacts.",
             });
           } else {
+            //perform a check here to see if the contact has been stored already
             if (
               obj.contacts &&
               obj.contacts[`${authentication.currentUser.uid}`]
             ) {
-              console.log("user has already been added");
               setFeedback({
                 fbType: "red",
                 fbHeader: "An error has occured",
                 fbDes:
                   "The user being added as been added before, you can't add a user twice.",
               });
+              //create new contact meetup
             } else {
               const newMeetup = {
                 messages: {
@@ -94,7 +95,7 @@ function AddNewContact() {
                 fbHeader: "User added successfully",
                 fbDes: "The new contact has been added successfully.",
               });
-              // fullScreen.provideFullScreen(0);
+              //animate off
               setAnimateOff(true);
             }
           }
@@ -136,7 +137,7 @@ function AddNewContact() {
         />
       ) : null}
       <div className={form.form}>
-        {" "}
+        {/* form that checks to queries you for contact email */}
         <Formik
           onSubmit={(values) => {
             setCheck(true);

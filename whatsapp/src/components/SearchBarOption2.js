@@ -9,11 +9,12 @@ function SearchBarOption2({
   centered,
   onChange,
 }) {
+  // onchange to input, check to see that the string is less than 25
   function handleChange() {
     if (objRef.current.value.length >= 25) {
       objRef.current.value = objRef.current.value.slice(0, 25);
     }
-    // console.log(titleRef.current.value.length);
+
     setChanged(objRef.current.value.length);
     if (onChange) {
       onChange();

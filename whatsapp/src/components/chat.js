@@ -35,6 +35,7 @@ function Chat({
   const [loading, setLoading] = useState(true);
   const scr2Ctx = useScreen2();
 
+  // update the database based on if im just reading the message or if all users have read my message
   const updateDb = useCallback(
     (message, key) => {
       if (myEmail === message.createdBy) {
@@ -63,6 +64,7 @@ function Chat({
     [meetingRoom, myEmail]
   );
   const cleared = useRef("");
+  // updates chats based on new message entered, THIS IS AFFECTED BY messageUpdate, closing this results to the other being closed and turns off listening on changes
   useEffect(() => {
     const ref = firebase.database().ref(`${type}s/${meetingRoom}/messages`);
 
@@ -82,6 +84,7 @@ function Chat({
     // };
   }, [meetingRoom, updateDb, track]);
 
+  //whenever we clear chats, clear message and alert messageUpdates of the changes
   useEffect(() => {
     let ref = firebase
       .database()
@@ -104,6 +107,7 @@ function Chat({
     };
   }, [meetingRoom, myEmail]);
 
+  // update the message based and paginate results
   const getMessages = useCallback(
     async (numberOfMessagesPerPage) => {
       if (meetingRoom) {
@@ -177,6 +181,7 @@ function Chat({
     },
     [meetingRoom, queryCursor, myEmail, updateDb]
   );
+  // if we are still fetching, loading is set to true
   useEffect(() => {
     currentBodyPosition.current = bodyRef.current.scrollHeight;
     getMessages(numberOfMessagesPerPage);
@@ -184,6 +189,7 @@ function Chat({
     setLoading(false);
   }, [meetingRoom, bodyRef, getMessages]);
 
+  // allow message fetching until message fetching isnt possible again, i.e no more old messages
   useEffect(() => {
     if (isEnded.current === false && show === true) {
       setLoading(true);
@@ -194,6 +200,7 @@ function Chat({
       setLoading(false);
     }
   }, [show, setShow, getMessages, bodyRef]);
+  // scrolling function, used alongside the bodyref from ChatPage, and allows us to change body scrolltop
   useLayoutEffect(() => {
     if (bodyRef.current) {
       if (

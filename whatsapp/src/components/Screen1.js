@@ -9,7 +9,9 @@ function Screen1() {
   const context = useScreen1();
 
   return (
+    // render screen 1 and make changes to display of screen 1
     <div className={classes.screen}>
+      {/* using screen 1 context, we set curr and prev when changing pages to ensure that we can animate prev when curr comes in */}
       {context.state.curr === pageNames.allMessages ||
       context.state.prev === pageNames.allMessages ? (
         <AllMessages />

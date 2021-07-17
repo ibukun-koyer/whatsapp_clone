@@ -8,6 +8,7 @@ function OrDivider() {
         alignItems: "center",
       }}
     >
+      {/* create line used in the login and signup pages */}
       <hr style={{ width: "50%" }} />
       <span style={{ padding: "1rem" }}>OR</span>
       <hr style={{ width: "50%" }} />

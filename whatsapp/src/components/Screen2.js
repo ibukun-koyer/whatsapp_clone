@@ -8,10 +8,13 @@ function Screen2() {
   const context = useScreen2();
   return (
     <div className={classes.screen}>
+      {/* replyprovider is a context that keeps track of your reply before you send it, i.e the reply above the message you are composing*/}
       <ReplyProvider>
+        {/* if no contact or group has been selected, render the landing page/demo page */}
         {context.state.type === "" ? (
           <DemoPage />
         ) : (
+          // else we render the chat page
           <ChatPage
             key={
               context.state.email
@@ -20,6 +23,7 @@ function Screen2() {
             }
           />
         )}
+        {/* if we are ready to send an image, then fileSend does all the image sending functionalities  */}
         {context.imageUrl.length ? (
           <FileSend
             setImageUrl={context.setImageUrl}

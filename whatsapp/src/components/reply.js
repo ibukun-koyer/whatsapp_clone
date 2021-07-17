@@ -20,9 +20,7 @@ function Reply({
   contactType,
 }) {
   const hoverExternal = useHover();
-  //start of reference
 
-  //end of reference
   return (
     <Fragment>
       {reply === "" ? null : (
@@ -37,7 +35,6 @@ function Reply({
             {reply.username}
           </div>
           <div className={external.replyMessage}>
-            {/* {reply.message.slice(0, 300)} */}
             {reply.type === "image" ? (
               <span>
                 <i

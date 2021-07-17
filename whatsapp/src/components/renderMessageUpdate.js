@@ -22,10 +22,10 @@ function RenderMessageUpdate({
   online,
   status,
 }) {
-  console.log(type);
   const [hover, setHover] = useState(false);
   const context = useScreen2();
   const authentication = useAuth();
+  // checks to see if the currentlyClicked is not mine, then we hover out, useful for when we defocus after being focused before
   useEffect(() => {
     if (currentlyClicked !== meetingRoom) {
       setHover(false);
@@ -42,6 +42,8 @@ function RenderMessageUpdate({
         }
       }}
       onClick={async () => {
+        // this section basically sets the screen2 state which then means that screen2 can now render a contact or a group based on
+        // what was clicked
         if (type === "contact") {
           context.setPage({
             type: "contact",
@@ -73,6 +75,7 @@ function RenderMessageUpdate({
         }
       }}
     >
+      {/* prints the users icon */}
       <div className={classes.new + " " + ownClass.updatedIcon}>
         <div className={ownClass.icon} style={{ backgroundColor: "#dfe5e7" }}>
           <img
@@ -87,6 +90,7 @@ function RenderMessageUpdate({
           />
         </div>
       </div>
+      {/* render the message and display name in a flex column as we see in app */}
       <div className={classes.new + " " + ownClass.updatedText}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span className={ownClass.username + " " + ownClass.ellipsis}>
@@ -100,6 +104,7 @@ function RenderMessageUpdate({
           </span>
         </div>
       </div>
+      {/* renders the date and keeps a section for the downangle to stay when we hover on this message */}
       <div
         className={classes.new + " " + ownClass.updatedText}
         style={{ width: "5rem", padding: "0" }}

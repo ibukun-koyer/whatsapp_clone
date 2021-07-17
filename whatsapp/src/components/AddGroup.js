@@ -25,14 +25,17 @@ function AddGroup() {
   const [changed, setChanged] = useState("");
   const [contacts, setContacts] = useState([]);
   const [selectedIcons, setSelectedIcons] = useState([]);
-  console.log(selectedIcons);
+
+  //get contacts, to be used to add to group
   useEffect(() => {
+    // fetch contacts
     const ref = firebase
       .database()
       .ref(
         `/users/${replaceInvalid(authentication.currentUser.email)}/contacts`
       );
     const myContacts = [];
+    // this function gets all contacts
     async function get(i) {
       await firebase
         .database()
@@ -45,7 +48,6 @@ function AddGroup() {
             url,
             status,
           });
-          // allContacts(myContacts);
         });
     }
     ref.once("value", async (snapshot) => {
@@ -53,8 +55,7 @@ function AddGroup() {
         for (let i in snapshot.val()) {
           await get(i);
         }
-
-        // console.log(myContacts);
+        // store the contacts into the contacts state, in alphabetical order, and remove me
         setContacts(
           myContacts
             .sort(function (a, b) {
@@ -89,6 +90,7 @@ function AddGroup() {
       : (userIconHeight + paddingBottom) * selectedIcons.length;
   return (
     <div
+      // the actual page classes, animation, initialization all included here
       className={
         (context.state.curr === pageNames.groupInfo &&
         context.state.prev === pageNames.addGroup
@@ -107,6 +109,7 @@ function AddGroup() {
         page.initializePage
       }
     >
+      {/* create page header */}
       <PageHeader
         header="Add group participants"
         onClick={() => {
@@ -116,6 +119,7 @@ function AddGroup() {
           });
         }}
       />
+      {/* create the contact section */}
       {selectedIcons.length !== 0 ? (
         <div
           style={{

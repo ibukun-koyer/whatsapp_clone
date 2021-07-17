@@ -1,7 +1,6 @@
 import classes from "./signup.module.css";
 import Alert from "./alert";
 function AuthBkg({ serverError, setServerError, children }) {
-  // console.log(children);
   return (
     <div>
       {serverError === "" ? null : (

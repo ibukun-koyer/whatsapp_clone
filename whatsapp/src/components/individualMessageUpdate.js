@@ -20,14 +20,20 @@ function IndividualMessageUpdate({
   //4. date✅
 
   const authentication = useAuth();
+  // destructuring some variables useful for this message
   const { message, meetingRoom, url, type, createdAt } = indivInfo;
 
+  // the display name is either contacts name or the groupTitle
   let displayName =
     type === "contact" ? indivInfo.username : indivInfo.groupTitle;
+
+  // calculate date based on a function specified in helperfiles
   let messageDate = date(createdAt, today, yesterday, cutOffDate);
   const myEmail = replaceInvalid(authentication.currentUser.email);
+  // the key to the message, since message is an obj
   let messageKey = Object.keys(message)[0];
 
+  // innerText based on what type of message this is
   let innerText = (
     <span>
       {" "}
@@ -55,12 +61,16 @@ function IndividualMessageUpdate({
     </span>
   );
 
+  // initially, we assume that the string to be displayed is you created group or you were added to
+
   let baseMessage =
     myEmail === indivInfo.createdBy
       ? `You created group "${displayName}"`
       : `You were added to "${displayName}"`;
 
+  //if the key is cleared, it means its an empty group contact, then the message will be base message, else, we change message
   if (messageKey !== "cleared") {
+    // if i deleted the message
     if (
       message[messageKey].deletedBy &&
       Object.values(message[messageKey].deletedBy).indexOf(myEmail) !== -1
@@ -71,14 +81,17 @@ function IndividualMessageUpdate({
           <i>You deleted this message</i>
         </span>
       );
-    } else if (message[messageKey].createdBy === myEmail) {
+    }
+    // if i created the message, then i want to know if it has been read or not
+    else if (message[messageKey].createdBy === myEmail) {
       baseMessage = (
         <span>
           <ReadSVG read={message[messageKey].readRecipient === "read"} />{" "}
           {innerText}
         </span>
       );
-    } else {
+    } //else if i did not create the message
+    else {
       if (message[messageKey].readRecipient === "read") {
         baseMessage = innerText;
       } else {
@@ -87,7 +100,7 @@ function IndividualMessageUpdate({
       }
     }
   }
-  // console.log(baseMessage);
+
   return (
     <RenderMessageUpdate
       imageUrl={url}
