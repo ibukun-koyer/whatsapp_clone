@@ -36,7 +36,10 @@ function AllMessages() {
       }
       //if we are clearing out message
       if (optionCtx.getOutput === optionArr[2]) {
-        console.log("change settings");
+        context.setPage({
+          prev: pageNames.allMessages,
+          curr: pageNames.settings,
+        });
       }
       if (optionCtx.getOutput === optionArr[3]) {
         authentication.logout();

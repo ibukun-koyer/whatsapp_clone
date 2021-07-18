@@ -14,6 +14,7 @@ import { useOption } from "../context/showOptions";
 
 import DropDown from "./dropDown";
 import ExpandImage from "./expandImage";
+import Theme from "./theme";
 
 function Home() {
   // hooks initialization
@@ -113,6 +114,7 @@ function Home() {
       {/* using the fullscreen context, we can render whatever pages we want to based on the value in showFull, if showFull is -1, it does not allow you show fullscreen */}
       {fullScreen.showFull === 1 ? <AddNewContact /> : null}
       {fullScreen.showFull === 2 ? <ExpandImage /> : null}
+      {fullScreen.showFull === 3 ? <Theme /> : null}
     </Fragment>
   );
 }

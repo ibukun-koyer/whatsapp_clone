@@ -14,7 +14,7 @@
 .contact {
   position: absolute;
   left: 0;
-  box-shadow: 0 0.5rem 0.5rem 0.2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 0.5rem 0.2rem var(--boxShadowStyle3);
 
   border-radius: 50%;
   background-color: inherit;

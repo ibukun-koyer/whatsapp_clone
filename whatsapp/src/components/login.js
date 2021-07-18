@@ -134,7 +134,7 @@ function Login() {
                 width: "100%",
                 textAlign: "center",
                 padding: "1rem",
-                color: "#009688",
+                color: "var(--extremeDarkGreen)",
               }}
             >
               <Link to="/passwordRecovery" style={{ textDecoration: "none" }}>

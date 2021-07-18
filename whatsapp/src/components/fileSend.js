@@ -304,9 +304,9 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
           <div
             className={classes.imageHolder}
             style={{
-              backgroundColor: "white",
+              backgroundColor: "var(--profileInputBkgColor)",
               flexDirection: "column",
-              color: "#00a5f4",
+              color: "var(--myReplyBkg)",
             }}
             onClick={handleClick}
           >

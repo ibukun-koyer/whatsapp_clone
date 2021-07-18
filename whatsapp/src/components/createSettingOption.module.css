@@ -1,0 +1,28 @@
+.containOpt {
+  width: 100%;
+
+  display: flex;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.iconContainer {
+  width: var(--iconContainerSize);
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--iconColor);
+}
+.title {
+  width: calc(100% - var(--iconContainerSize));
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--darkGray);
+  font-size: 21px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.containOpt:hover {
+  background-color: var(--darkGray);
+  transition: 0.2s;
+}

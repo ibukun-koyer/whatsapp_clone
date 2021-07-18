@@ -33,7 +33,6 @@ function PasswordRecovery() {
             })
             .catch((e) => {
               console.log("failed");
-              //   setServerError(e.message);
             });
         }}
         initialValues={{
@@ -96,7 +95,7 @@ function PasswordRecovery() {
           width: "100%",
           textAlign: "center",
           padding: "1rem",
-          color: "black",
+          color: "var(--pureBlack)",
         }}
       >
         <Link to="/" style={{ textDecoration: "none" }}>

@@ -6,6 +6,7 @@ import { pageNames } from "./helperFiles/globals";
 import AddGroup from "./AddGroup";
 import GroupInfo from "./groupInfo";
 import MyProfile from "./myProfile";
+import Settings from "./settings";
 function Screen1() {
   const context = useScreen1();
 
@@ -32,6 +33,10 @@ function Screen1() {
       {context.state.curr === pageNames.myProfile ||
       context.state.prev === pageNames.myProfile ? (
         <MyProfile />
+      ) : null}
+      {context.state.curr === pageNames.settings ||
+      context.state.prev === pageNames.settings ? (
+        <Settings />
       ) : null}
     </div>
   );

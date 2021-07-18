@@ -21,7 +21,7 @@
   ) !important;
 }
 .Hblur i {
-  color: white !important;
+  color: var(--profileInputBkgColor) !important;
 }
 .dropDownPrompt {
   padding-left: 1rem;

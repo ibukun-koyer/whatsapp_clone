@@ -1,0 +1,52 @@
+.updatedForm {
+  padding: 22px 24px;
+  width: 25rem;
+  box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19),
+    0 12px 15px 0 rgba(0, 0, 0, 0.24);
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.2rem;
+  top: 0;
+  left: 0;
+}
+.header {
+  color: var(--fontDarkColor);
+  font-weight: 400;
+
+  margin-bottom: 1rem;
+}
+.inputs {
+  line-height: 2rem;
+  color: var(--fontDarkColor);
+  font-weight: 200;
+}
+
+.inputs input {
+  margin-right: 0.5rem;
+}
+.containBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3rem;
+}
+.defaultBtn {
+  border: none;
+  padding: 0.3rem 1.5rem;
+  border-radius: 0.2rem;
+  transition: 0.2s;
+}
+.defaultBtn:hover {
+  transition: 0.2s;
+  box-shadow: -0.5px 3px 2px 1px var(--boxShadowStyle2);
+}
+.btn1 {
+  color: var(--successGreen);
+  background-color: var(--profileInputBkgColor);
+  border: 1px solid var(--darkGray);
+  margin-right: 0.3rem;
+}
+.btn2 {
+  background-color: var(--successGreen);
+  color: var(--profileInputBkgColor);
+}

@@ -12,9 +12,9 @@ function HoverSVG({ text, position }) {
           fontSize / 2
         }rem - ${padding}rem)`,
         left: "4rem",
-        backgroundColor: "rgba(30,30 ,30, 0.7)",
+        backgroundColor: "var(--svgHoverColor)",
         borderRadius: "2rem",
-        color: "white",
+        color: "var(--profileInputBkgColor)",
         padding: `${padding}rem`,
         paddingRight: `${paddingLeftRight}rem`,
         paddingLeft: `${paddingLeftRight}rem`,

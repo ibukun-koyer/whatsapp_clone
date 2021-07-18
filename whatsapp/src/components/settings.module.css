@@ -1,0 +1,45 @@
+.myInfo {
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  padding: 1rem;
+  box-sizing: border-box;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.containImage {
+  width: var(--image-ratio);
+  aspect-ratio: 1/1;
+}
+.containImage > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--iconColor);
+  overflow: hidden;
+}
+.containImage > div > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.containText {
+  margin-left: 1rem;
+  width: calc(100% - var(--image-ratio));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.topText {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.bottomText {
+  font-weight: 200;
+  color: var(--iconColor);
+}
+.myInfo:hover {
+  transition: 0.2s;
+  background-color: var(--darkGray);
+}

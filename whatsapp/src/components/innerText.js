@@ -40,7 +40,7 @@ function InnerText({ myEmail, messages, createdAt, time, type, users }) {
 
     linkWithA = (
       <span>
-        <a href={link} style={{ color: "#00a5f4" }}>
+        <a href={link} style={{ color: "var(--myReplyBkg)" }}>
           {link}
         </a>
       </span>
@@ -67,7 +67,9 @@ function InnerText({ myEmail, messages, createdAt, time, type, users }) {
   return (
     <span>
       {type === "group" ? (
-        <div style={{ color: "grey", fontSize: "0.7rem" }}>{thisUsersName}</div>
+        <div style={{ color: "var(--iconColor)", fontSize: "0.7rem" }}>
+          {thisUsersName}
+        </div>
       ) : null}
       {messageTAG}
       <span className={classes.wrapTime}>

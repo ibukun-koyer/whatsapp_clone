@@ -7,18 +7,13 @@
   right: 5vw;
   bottom: 7rem;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--profileInputBkgColor);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0.05rem 0.3rem 0.05rem rgba(0, 0, 0, 0.2);
-  color: grey;
+  box-shadow: 0 0.05rem 0.3rem 0.05rem var(--boxShadowStyle3);
+  color: var(--iconColor);
   z-index: 4;
-
-  /* position: sticky;
-    position: -webkit-sticky;
-    top: 1rem;
-    z-index: 4; */
 }
 .scrollDown > i {
   font-size: 2rem;

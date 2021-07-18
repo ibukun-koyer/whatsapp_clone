@@ -155,7 +155,7 @@ function SignUp() {
               }}
             >
               {imageError === "" ? null : (
-                <div style={{ color: "red" }}>*{imageError}</div>
+                <div style={{ color: "var(--errorRed)" }}>*{imageError}</div>
               )}
             </div>
             <Row>

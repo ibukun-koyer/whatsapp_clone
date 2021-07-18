@@ -141,7 +141,7 @@ function GroupInfo() {
               <SearchBarOption2
                 objRef={titleRef}
                 valueChanged={valueChanged}
-                // handleChange={handleChange}
+                
                 setChanged={setChanged}
                 placeholder={"Group subject"}
                 showCharacterCount

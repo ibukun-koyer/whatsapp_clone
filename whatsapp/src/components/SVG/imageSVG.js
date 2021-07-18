@@ -31,7 +31,7 @@ function ImageSVG({ className, incoming, meetingRoom }) {
       screen2.setImageUrl(list_of_files);
     }
 
-    // , screen2.setImageUrl
+
   }
   return (
     <Fragment>

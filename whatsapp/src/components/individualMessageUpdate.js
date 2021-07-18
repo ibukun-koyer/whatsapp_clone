@@ -97,8 +97,16 @@ function IndividualMessageUpdate({
       if (message[messageKey].readRecipient === "read") {
         baseMessage = innerText;
       } else {
-        baseMessage = <b style={{ color: "rgb(30,30,30" }}>{innerText}</b>;
-        displayName = <b style={{ color: "rgb(30,30,30" }}>{displayName}</b>;
+        baseMessage = (
+          <b style={{ color: "var(--messageReceivedBoldColor)" }}>
+            {innerText}
+          </b>
+        );
+        displayName = (
+          <b style={{ color: "var(--messageReceivedBoldColor)" }}>
+            {displayName}
+          </b>
+        );
       }
     }
   }

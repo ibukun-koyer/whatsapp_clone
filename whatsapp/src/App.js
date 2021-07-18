@@ -5,7 +5,18 @@ import Home from "./components/Home";
 import { FullScreenProvider } from "./context/requestFullScreen";
 import { Route, Switch } from "react-router-dom";
 import { OptionsProvider } from "./context/showOptions";
+import { useAuth } from "./context/authContext";
+import { useLayoutEffect } from "react";
+
 function App() {
+  const authentication = useAuth();
+  useLayoutEffect(() => {
+    let theme = localStorage.getItem("theme");
+    if (theme && theme !== authentication.theme) {
+      authentication.setTheme(theme);
+    }
+  }, []);
+
   return (
     <div>
       <Switch>

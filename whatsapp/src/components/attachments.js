@@ -31,11 +31,7 @@ function Attachments({ meetingRoom }) {
               meetingRoom={meetingRoom}
             />
           )}
-          {/* {showAttach ? (
-            <ContactSVG className={classes.contact} incoming={true} />
-          ) : (
-            <ContactSVG className={classes.contact} incoming={showAttach} />
-          )} */}
+       
         </div>
       </i>
     </Fragment>

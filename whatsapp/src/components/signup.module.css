@@ -1,7 +1,3 @@
-:root {
-  --extremeDarkGreen: #009688;
-  --bkgWhiteColor: #d9dbd6;
-}
 .bkg {
   width: 100%;
 }
@@ -16,20 +12,20 @@
   width: 100%;
 }
 .form {
-  background-color: white;
+  background-color: var(--profileInputBkgColor);
   left: calc(50% / 2);
   padding: 4rem;
   position: absolute;
   top: 150px;
   width: 50%;
-  /* border-radius: 0.5rem; */
-  box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+
+  box-shadow: 0 0 0.2rem 0.2rem var(--boxShadowStyle2);
 }
 .title {
   position: absolute;
   top: 19px;
   left: 300px;
-  color: white;
+  color: var(--profileInputBkgColor);
 }
 .icon {
   width: 6rem;
@@ -53,7 +49,7 @@
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  background-color: #d9dbd6;
+  background-color: var(--bkgWhiteColor);
   overflow: hidden;
 }
 .imagePicker {
@@ -81,23 +77,23 @@
   border-radius: 1rem;
 
   padding: 2rem;
-  box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.2rem 0.2rem var(--boxShadowStyle2);
 }
 .red {
-  color: brown;
-  background-color: rgb(252, 193, 181);
+  color: var(--redAlertColor);
+  background-color: var(--redAlertBkg);
 }
 .green_ {
-  color: green;
-  background-color: rgb(155, 255, 155);
+  color: var(--greenAlertColor);
+  background-color: var(--greenAlertBkg);
 }
 .red .btnError {
-  border: 1px solid red;
-  color: red;
+  border: 1px solid (--errorRed);
+  color: (--errorRed);
 }
 .green_ .btnError {
-  color: green;
-  border: 1px solid green;
+  color: var(--successGreen);
+  border: 1px solid var(--successGreen);
 }
 .buttonAlert {
   padding: 0.2rem;

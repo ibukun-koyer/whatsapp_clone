@@ -1,10 +1,3 @@
-:root {
-  --imageSize: 12rem;
-  --imageMargin: 2rem;
-  --bodyMargin: 2rem;
-  --inputPadding: 0.3rem;
-  --animationBarSize: 4rem;
-}
 .body {
   height: calc(100% - 110px);
   background-color: var(--darkGray);
@@ -26,7 +19,7 @@
 .userImage {
   width: var(--imageSize);
   height: var(--imageSize);
-  background-color: gray;
+  background-color: var(--iconColor);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -64,7 +57,7 @@
   outline: none;
   padding-right: 3rem;
   width: 100%;
-  /* z-index: 5; */
+
 }
 .wrapTitle {
   position: relative;
@@ -73,14 +66,14 @@
 .maxChar,
 .placeholder {
   position: absolute;
-  color: rgb(180, 180, 180);
+  color: var(--scrollBarColor);
   right: 1rem;
   top: calc(0.5rem + var(--imageMargin));
   z-index: 0;
   cursor: text;
 }
 .placeholder {
-  color: grey;
+  color: var(--iconColor);
   left: 2px;
 }
 .image {
@@ -102,8 +95,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  color: rgb(230, 230, 230);
-  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--darkGray);
+  background-color: var(--playIconBkgColor);
   line-height: 0.9rem;
 }
 .camIcon {
@@ -135,7 +128,6 @@
 }
 .undoPlaceholderAnim {
   animation: revert var(--animation-time);
-  /* color: green; */
 }
 .center {
   width: 100%;
@@ -143,14 +135,15 @@
   justify-content: center;
 }
 .err {
-  color: red;
+  color: var(--errorRed);
 }
 .loadBar {
   width: var(--animationBarSize);
   height: var(--animationBarSize);
   border: calc(var(--animationBarSize) / 20) solid var(--greenish);
   border-radius: 50%;
-  border-left: calc(var(--animationBarSize) / 20) solid white;
+  border-left: calc(var(--animationBarSize) / 20) solid
+    var(--profileInputBkgColor);
   border-left: none;
   animation: rotate 1s infinite;
 }

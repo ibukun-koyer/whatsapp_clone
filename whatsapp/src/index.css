@@ -1,3 +1,85 @@
+:root {
+  /* colors */
+  --extremeDarkGreen: #009688;
+  --bkgWhiteColor: #d9dbd6;
+  --lemon: #09e85e;
+  --darkGray: rgb(231, 231, 231);
+  --lightGray: rgb(245, 244, 244);
+  --lighterGray: rgb(250, 250, 250);
+  --myMessageColor: #dcf8c6;
+  --yourMessageColor: white;
+  --borderColor: rgb(212, 212, 212);
+  --iconColor: grey;
+  --profileInputBkgColor: white;
+  --lighter-nextGray: #f7f7f7;
+  --fontDarkColor: rgba(74, 74, 74);
+  --successGreen: rgb(0, 167, 0);
+  --greenish: #00bfa5;
+  --whatsAppGreen: rgb(0, 212, 106);
+  --btwBlackWhiteColor: rgb(150, 150, 150);
+  --svgHoverColor: rgba(30, 30, 30, 0.7);
+  --boxShadowStyle1: rgba(0, 0, 0, 0.3);
+  --fullscreenColor: rgba(255, 255, 255, 0.9);
+  --navHoverColor: rgb(88, 88, 88);
+  --searchBarArrowColor: rgb(0, 178, 248);
+  --boxShadowStyle2: rgba(0, 0, 0, 0.1);
+  --boxShadowStyle3: rgba(0, 0, 0, 0.2);
+  --playIconBkgColor: rgba(0, 0, 0, 0.5);
+  --dateBkgColor: #d8e9f2;
+  --invisiblePureWhite: rgb(255, 255, 255, 0);
+  --myMessageBkg: #dcf8c6;
+  --myMessageBkgInvisible: #dcf8c600;
+  --pureBlack: black;
+  --currentMessagingBkg: #e5ddd5;
+  --scrollBarColor: rgb(170, 170, 170);
+  --replySectionTransparency: rgba(0, 0, 0, 0.05);
+  --yourReplyBkg: #07bc4c;
+  --myReplyBkg: #00a5f4;
+  --fileSendFooterBkg: rgb(212, 212, 212);
+  --errorRed: red;
+  --messageReceivedBoldColor: rgb(30, 30, 30);
+  /* alert card color */
+  --redAlertColor: brown;
+  --redAlertBkg: rgb(252, 193, 181);
+  --greenAlertColor: green;
+  --greenAlertBkg: rgb(155, 255, 155);
+  /* regular value variables */
+  --margin: 2rem;
+  --nextBtnSize: 3rem;
+  --ppWidth: 80%;
+  --SearchPadding: 0.3rem;
+  --navHeight: 56px;
+  --Chatmargin: 6vw;
+  --sizeOfMessageTriangle: 0.6rem;
+  --triangleBorderRadius: 0.2rem;
+  --navWidthSpace: 90%;
+  --backgroundHeight: calc(100% - (var(--navHeight) * 2) - 0.6rem);
+  --replySection: 70px;
+  --hoverColor: var(--borderColor);
+  --iconContainerSize: 15%;
+  --imageNavHeight: 4rem;
+  --imageFooterHeight: 9rem;
+  --navMargin: 1rem;
+  --footerMargin: 3rem;
+  --selectorImageSize: 5rem;
+  --padSelector: 0.2rem;
+  --imageBodyHeight: calc(
+    100% - var(--imageFooterHeight) - var(--imageNavHeight) - var(--navMargin) -
+      var(--footerMargin)
+  );
+  --imageSize: 12rem;
+  --imageMargin: 2rem;
+  --bodyMargin: 2rem;
+  --inputPadding: 0.3rem;
+  --animationBarSize: 4rem;
+  --greenHeight: 130px;
+  --width: 1400px;
+  --animation-time: 0.5s;
+  --itemHeight: 30rem;
+  --imageNewHeight: 15rem;
+  --image-ratio: 25%;
+  --pageHeaderHeight: 110px;
+}
 body {
   margin: 0;
   font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",

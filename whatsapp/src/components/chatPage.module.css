@@ -1,23 +1,13 @@
-:root {
-  --navWidthSpace: 90%;
-  --backgroundHeight: calc(100% - (var(--navHeight) * 2) - 0.6rem);
-  --replySection: 70px;
-  --borderColor: rgb(212, 212, 212);
-  --iconColor: grey;
-  --hoverColor: var(--borderColor);
-}
 .nav {
   justify-content: flex-start;
   border-left: 0.1rem solid var(--borderColor);
   border-bottom: 0.1rem solid var(--borderColor);
-
-  /* padding: 0; */
 }
 .ppUpdated {
   width: var(--navWidthSpace);
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
+
   align-items: center;
   cursor: pointer;
 }
@@ -33,7 +23,7 @@
   padding-left: 20px;
   font-size: 1rem;
   font-weight: 400;
-  color: rgb(74, 74, 74);
+  color: var(--fontDarkColor);
   display: flex;
   flex-direction: column;
 }
@@ -47,20 +37,19 @@
 .background {
   position: absolute;
   top: var(--navHeight);
-  /* background-color: tan; */
   background-image: url("https://web.whatsapp.com/img/bg-chat-tile-light_04fcacde539c58cca6745483d4858c52.png");
 
   background-repeat: repeat;
   width: 100%;
   height: var(--backgroundHeight);
   z-index: 0;
-  /* overflow-y: auto; */
+
   opacity: 0.1;
 }
 .backgroundColor {
   position: absolute;
   top: var(--navHeight);
-  background-color: #e5ddd5;
+  background-color: var(--currentMessagingBkg);
 
   background-repeat: repeat;
   width: 100%;
@@ -68,13 +57,11 @@
   z-index: 0;
 }
 .body {
-  /* z-index: 100; */
-  /* transform: translateZ(1rem); */
-  color: black;
+  color: var(--pureBlack);
   font-size: 3rem;
   width: 100%;
   height: var(--backgroundHeight);
-  /* overflow-x: hidden; */
+
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -84,7 +71,7 @@
   width: 5px;
 }
 .body::-webkit-scrollbar-thumb {
-  background-color: rgb(170, 170, 170);
+  background-color: var(--scrollBarColor);
 }
 .body::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0);
@@ -92,14 +79,14 @@
 
 .input {
   height: var(--navHeight);
-  /* height: 10rem; */
+
   background-color: var(--darkGray);
   border-left: 0.1rem solid var(--borderColor);
   border-top: 0.1rem solid var(--borderColor);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* padding: 0; */
+
   padding: 2rem;
   padding-left: 0;
   padding-right: 1rem;
@@ -115,7 +102,7 @@
 }
 .input > svg {
   color: var(--iconColor);
-  /* padding: 0.5rem; */
+
   margin-left: 1rem;
   margin-right: 1rem;
 }
@@ -146,7 +133,6 @@
   border-left: 0.1rem solid var(--borderColor);
   border-top: 0.1rem solid var(--borderColor);
   display: flex;
-  /* justify-content: space-evenly; */
   align-items: center;
 }
 .replySection > i {
@@ -159,8 +145,6 @@
 .replyBox {
   border-radius: 0.4rem;
   word-break: break-all;
-  /* padding-left: 1rem;
-  padding-right: 1rem; */
   padding: 1rem;
   margin-left: 5rem;
   width: 90%;
@@ -168,7 +152,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-color: rgb(220, 220, 220);
+  background-color: var(--replySectionTransparency);
   position: relative;
   overflow: hidden;
 }
@@ -188,17 +172,17 @@
   left: 0;
   height: 100%;
   width: 4px;
-  background-color: black;
+  background-color: var(--pureBlack);
 }
 .greenBkg {
-  background-color: #07bc4c;
+  background-color: var(--yourReplyBkg);
 }
 .greenText {
-  color: #07bc4c;
+  color: var(--yourReplyBkg);
 }
 .blueBkg {
-  background-color: #00a5f4;
+  background-color: var(--myReplyBkg);
 }
 .blueText {
-  color: #00a5f4;
+  color: var(--myReplyBkg);
 }

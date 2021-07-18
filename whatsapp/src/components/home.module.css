@@ -1,6 +1,4 @@
-:root {
-  --greenHeight: 130px;
-}
+
 .green {
   height: var(--greenHeight);
 }

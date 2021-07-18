@@ -77,7 +77,10 @@ function RenderMessageUpdate({
     >
       {/* prints the users icon */}
       <div className={classes.new + " " + ownClass.updatedIcon}>
-        <div className={ownClass.icon} style={{ backgroundColor: "#dfe5e7" }}>
+        <div
+          className={ownClass.icon}
+          style={{ backgroundColor: "var(--darkGray)" }}
+        >
           <img
             src={imageUrl}
             alt="user icon"
@@ -98,7 +101,7 @@ function RenderMessageUpdate({
           </span>
           <span
             className={ownClass.status + " " + ownClass.ellipsis}
-            style={{ color: "grey" }}
+            style={{ color: "var(--iconColor)" }}
           >
             {text}
           </span>
@@ -112,7 +115,7 @@ function RenderMessageUpdate({
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span
             className={ownClass.date}
-            style={{ padding: "0", color: "grey" }}
+            style={{ padding: "0", color: "var(--iconColor)" }}
           >
             {date}
           </span>

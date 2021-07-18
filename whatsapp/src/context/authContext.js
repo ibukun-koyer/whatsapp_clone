@@ -27,6 +27,7 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email);
   };
 
+  const [theme, setTheme] = useState("light");
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -41,7 +42,6 @@ export function AuthProvider({ children }) {
               .ref(`users/${replaceInvalid(user.email)}`);
             ref.once("value", (snapshot) => {
               const obj = snapshot.val();
-              // console.log(obj);
               if (!obj) {
                 const userRef = firebase.database().ref("/users");
                 const hashString = replaceInvalid(user.email);
@@ -62,11 +62,12 @@ export function AuthProvider({ children }) {
         //check if user exist
       }
       setCurrentUser(user);
-
     });
     return unsubscribe;
   }, [userInfo.url, userInfo.username]);
   const value = {
+    theme,
+    setTheme,
     currentUser,
     signup,
     login,

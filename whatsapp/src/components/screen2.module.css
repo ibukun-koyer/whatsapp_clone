@@ -1,9 +1,3 @@
-:root {
-  --lighter-nextGray: #f7f7f7;
-  --itemHeight: 30rem;
-  --imageNewHeight: 15rem;
-  --whatsAppGreen: rgb(0, 212, 106);
-}
 .screen {
   width: 70%;
   height: 100%;
@@ -52,12 +46,12 @@
 .demoHeader {
   font-size: 2.5rem;
   font-weight: 200;
-  color: rgb(74, 74, 74);
+  color: var(--fontDarkColor);
   /* margin-bottom: 1rem; */
 }
 .demoDes {
   font-size: 0.9rem;
-  color: rgb(150, 150, 150);
+  color: var(--btwBlackWhiteColor);
   padding: 1rem;
   padding-bottom: 2rem;
   padding-left: 0;
