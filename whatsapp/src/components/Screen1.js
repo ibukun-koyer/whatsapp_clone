@@ -7,6 +7,7 @@ import AddGroup from "./AddGroup";
 import GroupInfo from "./groupInfo";
 import MyProfile from "./myProfile";
 import Settings from "./settings";
+import ChatBacground from "./chatBackground";
 function Screen1() {
   const context = useScreen1();
 
@@ -37,6 +38,10 @@ function Screen1() {
       {context.state.curr === pageNames.settings ||
       context.state.prev === pageNames.settings ? (
         <Settings />
+      ) : null}
+      {context.state.curr === pageNames.chatBackground ||
+      context.state.prev === pageNames.chatBackground ? (
+        <ChatBacground />
       ) : null}
     </div>
   );

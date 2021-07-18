@@ -16,6 +16,13 @@ function Settings() {
   const [info, setInfo] = useState(undefined);
   const context = useScreen1();
 
+  function chatBackground() {
+    context.setPage({
+      prev: pageNames.settings,
+      curr: pageNames.chatBackground,
+    });
+  }
+
   useEffect(() => {
     if (context.myInfo) {
       setInfo(context.myInfo);
@@ -82,7 +89,7 @@ function Settings() {
           ></path>
         </svg>
       </CreateSettingOption>
-      <CreateSettingOption title="chat wallpaper">
+      <CreateSettingOption title="chat wallpaper" onClick={chatBackground}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

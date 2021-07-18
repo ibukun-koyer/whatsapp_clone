@@ -87,8 +87,8 @@ function MyProfile() {
     <div
       className={
         (context.state.curr === pageNames.myProfile
-          ? page.animate3
-          : page.animate4) +
+          ? page.animate1
+          : page.animate2) +
         " " +
         page.onTop +
         " " +
