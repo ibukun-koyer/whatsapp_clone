@@ -2,7 +2,7 @@
   width: 100%;
 }
 .green {
-  background-color: var(--extremeDarkGreen);
+  background-color: var(--backgroundGreen);
   height: 30%;
   width: 100%;
 }
@@ -20,12 +20,13 @@
   width: 50%;
 
   box-shadow: 0 0 0.2rem 0.2rem var(--boxShadowStyle2);
+  color: var(--fontDefaultColor);
 }
 .title {
   position: absolute;
   top: 19px;
   left: 300px;
-  color: var(--profileInputBkgColor);
+  color: var(--fontDefaultColor);
 }
 .icon {
   width: 6rem;

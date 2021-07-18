@@ -8,7 +8,7 @@
 .initializePage {
   overflow-x: hidden;
   height: 100%;
-  background-color: var(--profileInputBkgColor);
+  background-color: var(--background-default);
   width: 100%;
 }
 .animate1 {

@@ -43,7 +43,12 @@
   width: 100%;
   resize: none;
   height: fit-content;
+  color: var(--fontDefaultColor);
+  background-color: inherit;
 }
 .remainingChars {
   padding-right: 5px;
+}
+.currentText {
+  color: var(--fontDefaultColor);
 }

@@ -1,0 +1,133 @@
+:root {
+  /* colors */
+  --backgroundGreen: #009688;
+  --extremeDarkGreen: #009688;
+  --bkgWhiteColor: #d9dbd6;
+  --lemon: #09e85e;
+  --darkGray: rgb(231, 231, 231);
+  --lightGray: rgb(245, 244, 244);
+  --lighterGray: rgb(250, 250, 250);
+  --myMessageColor: #dcf8c6;
+  --yourMessageColor: white;
+  --borderColor: rgb(212, 212, 212);
+  --iconColor: grey;
+  --profileInputBkgColor: white;
+  --lighter-nextGray: #f7f7f7;
+  --fontDarkColor: rgba(74, 74, 74);
+  --successGreen: rgb(0, 167, 0);
+  --greenish: #00bfa5;
+  --whatsAppGreen: rgb(0, 212, 106);
+  --btwBlackWhiteColor: rgb(150, 150, 150);
+  --svgHoverColor: rgba(30, 30, 30, 0.7);
+  --boxShadowStyle1: rgba(0, 0, 0, 0.3);
+  --fullscreenColor: rgba(255, 255, 255, 0.9);
+  --navHoverColor: rgb(88, 88, 88);
+  --searchBarArrowColor: rgb(0, 178, 248);
+  --boxShadowStyle2: rgba(0, 0, 0, 0.1);
+  --boxShadowStyle3: rgba(0, 0, 0, 0.2);
+  --playIconBkgColor: rgba(0, 0, 0, 0.5);
+  --dateBkgColor: #d8e9f2;
+  --invisiblePureWhite: rgb(255, 255, 255, 0);
+  --myMessageBkg: #dcf8c6;
+  --myMessageBkgInvisible: #dcf8c600;
+  --pureBlack: black;
+  --currentMessagingBkg: #e5ddd5;
+  --scrollBarColor: rgb(170, 170, 170);
+  --replySectionTransparency: rgba(0, 0, 0, 0.05);
+  --messageReceivedBoldColor: rgb(30, 30, 30);
+  --demoPageThinBorder: var(--darkGray);
+  --underlineBorderColor: var(--lightGray);
+  --background-default: white;
+  --inputBkgColor: white;
+  --fontDefaultColor: #212529;
+  --optionHoverColor: var(--darkGray);
+  --bodyHover: var(--lightGray);
+  --pageHeaderScreen1BkgColor: var(--greenish);
+  --remainBright: rgba(241, 241, 242, 0.92);
+  --panelHeaderBkg: var(--darkGray);
+  --dateColor: var(--iconColor);
+  --hoverColor: var(--borderColor);
+  --dropDownIconColor: var(--iconColor);
+
+  --yourReplyBkg: #07bc4c;
+  --myReplyBkg: #00a5f4;
+  --fileSendFooterBkg: rgb(212, 212, 212);
+  --errorRed: red;
+
+  /* alert card color */
+  --redAlertColor: brown;
+  --redAlertBkg: rgb(252, 193, 181);
+  --greenAlertColor: green;
+  --greenAlertBkg: rgb(155, 255, 155);
+  /* regular value variables */
+  --margin: 2rem;
+  --nextBtnSize: 3rem;
+  --ppWidth: 80%;
+  --SearchPadding: 0.3rem;
+  --navHeight: 56px;
+  --Chatmargin: 6vw;
+  --sizeOfMessageTriangle: 0.6rem;
+  --triangleBorderRadius: 0.2rem;
+  --navWidthSpace: 90%;
+  --backgroundHeight: calc(100% - (var(--navHeight) * 2) - 0.6rem);
+  --replySection: 70px;
+
+  --iconContainerSize: 15%;
+  --imageNavHeight: 4rem;
+  --imageFooterHeight: 9rem;
+  --navMargin: 1rem;
+  --footerMargin: 3rem;
+  --selectorImageSize: 5rem;
+  --padSelector: 0.2rem;
+  --imageBodyHeight: calc(
+    100% - var(--imageFooterHeight) - var(--imageNavHeight) - var(--navMargin) -
+      var(--footerMargin)
+  );
+  --imageSize: 12rem;
+  --imageMargin: 2rem;
+  --bodyMargin: 2rem;
+  --inputPadding: 0.3rem;
+  --animationBarSize: 4rem;
+  --greenHeight: 130px;
+  --width: 1400px;
+  --animation-time: 0.5s;
+  --itemHeight: 30rem;
+  --imageNewHeight: 15rem;
+  --image-ratio: 25%;
+  --pageHeaderHeight: 110px;
+}
+.dark {
+  --backgroundGreen: #090e11;
+  --bkgWhiteColor: #090e11;
+  --lighter-nextGray: #262d31;
+  --whatsAppGreen: #046464;
+  --fontDarkColor: rgba(241, 241, 242, 0.88);
+  --demoPageThinBorder: rgba(241, 241, 242, 0.11);
+  --darkGray: #2a2f32;
+  --lightGray: #131c21;
+  --underlineBorderColor: rgba(241, 241, 242, 0.11);
+  --inputBkgColor: #33383b;
+  --background-default: var(--lightGray);
+  --fontDefaultColor: rgba(241, 241, 242, 0.92);
+  --messageReceivedBoldColor: var(--fontDefaultColor);
+  --profileInputBkgColor: var(--darkGray);
+  --fullscreenColor: rgba(0, 0, 0, 0.9);
+  --optionHoverColor: #20272b;
+  --bodyHover: var(--darkGray);
+  --searchBarArrowColor: gray;
+  --pageHeaderScreen1BkgColor: var(--inputBkgColor);
+  --remainBright: rgba(241, 241, 242, 0.92);
+  --scrollBarColor: rgba(255, 255, 255, 0.8);
+  --borderColor: var(--underlineBorderColor);
+  --myMessageColor: #056162;
+  --yourMessageColor: #262d31;
+  --replySectionTransparency: rgba(0, 0, 0, 0.2);
+  --panelHeaderBkg: #2a2f32;
+  --dateBkgColor: #002627;
+  --dateColor: white;
+  --hoverColor: var(--inputBkgColor);
+  --myMessageBkg: var(--myMessageColor);
+  --myMessageBkgInvisible: #05606200;
+  --dropDownIconColor: white;
+  --fileSendFooterBkg: #191f23;
+}

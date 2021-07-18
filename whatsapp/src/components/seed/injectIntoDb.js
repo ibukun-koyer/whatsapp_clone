@@ -1,9 +1,8 @@
-// import firebase from "firebase/app";
-// import "firebase/auth";
+
 let firebase = require("firebase/app");
 require("firebase/auth");
 
-// console.log(process.env.REACT_APP_apiKey.toString());
+
 const url =
   "https://th.bing.com/th/id/OIP.Psj56s3oU0aQkeZNr_rqpAEsEs?pid=ImgDet&rs=1";
 const password = "#INsaneWoman StoleFR4m me";
@@ -90,9 +89,7 @@ function fill() {
           };
           userRef.child(hashString).set(newUser);
         });
-      //check if user exist
 
-      //   console.log(user);
     }
   });
 }

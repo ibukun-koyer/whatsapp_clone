@@ -1,6 +1,7 @@
 #dropDown {
   font-size: 1.5rem !important;
   color: var(--iconColor);
+  color:var(--dropDownIconColor);
   position: relative;
   cursor: pointer;
 }
@@ -21,6 +22,6 @@
   flex-grow: 1;
 }
 .menuItem:hover {
-  background-color: var(--darkGray);
+  background-color: var(--optionHoverColor);
   cursor: pointer;
 }

@@ -14,7 +14,7 @@
 .nav {
   width: 100%;
   height: var(--imageNavHeight);
-  background-color: var(--greenish);
+  background-color: var(--pageHeaderScreen1BkgColor);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -97,7 +97,7 @@
 .send {
   border: none;
   font-family: inherit;
-  color: var(--profileInputBkgColor);
+  color: var(--remainBright);
   position: absolute;
   top: -2.1rem;
   box-sizing: border-box;
@@ -106,7 +106,7 @@
   height: 4rem;
 }
 .previewTxt {
-  color: var(--profileInputBkgColor);
+  color: var(--remainBright);
 
   margin: 0;
 }

@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import { OptionsProvider } from "./context/showOptions";
 import { useAuth } from "./context/authContext";
 import { useLayoutEffect } from "react";
+import "./App.css";
 
 function App() {
   const authentication = useAuth();
@@ -18,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className={authentication.theme === "dark" ? "dark" : ""}>
       <Switch>
         {/* match path home */}
         <Route path="/" exact>

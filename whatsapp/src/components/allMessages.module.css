@@ -8,6 +8,10 @@
   box-sizing: border-box;
   position: relative;
 }
+.bkgDefault {
+  background-color: var(--background-default);
+  height: 100%;
+}
 .lightGray {
   background-color: var(--lightGray);
 }
@@ -53,6 +57,8 @@
   box-sizing: border-box;
   padding-left: 5rem;
   font-size: 0.9rem;
+  background-color: var(--inputBkgColor);
+  color: var(--fontDefaultColor);
 }
 .searchIcon,
 .searchIconArrow {

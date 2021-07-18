@@ -33,7 +33,7 @@ function AddGroup() {
     const ref = firebase
       .database()
       .ref(
-        `/users/${replaceInvalid(authentication.currentUser.email)}/contacts`
+        `/users/${replaceInvalid(authentication.currentUser?.email)}/contacts`
       );
     const myContacts = [];
     // this function gets all contacts
@@ -84,7 +84,7 @@ function AddGroup() {
         );
       }
     });
-  }, [changed, authentication.currentUser.email]);
+  }, [changed, authentication.currentUser?.email]);
   const calcHeightOfUsers =
     (userIconHeight + paddingBottom) * selectedIcons.length > maxHeight
       ? maxHeight

@@ -33,20 +33,20 @@ function GroupInfo() {
       const myUsername = await firebase
         .database()
         .ref(
-          `users/${replaceInvalid(authentication.currentUser.email)}/username`
+          `users/${replaceInvalid(authentication.currentUser?.email)}/username`
         )
         .once("value", (snapshot) => snapshot)
         .then((snapshot) => snapshot.val());
       const users = [
         ...context.state.transferData,
-        [replaceInvalid(authentication.currentUser.email), myUsername],
+        [replaceInvalid(authentication.currentUser?.email), myUsername],
       ];
 
       const groupInitialize = {
         groupTitle: title,
         imageUrl: url,
         users: users,
-        createdBy: replaceInvalid(authentication.currentUser.email),
+        createdBy: replaceInvalid(authentication.currentUser?.email),
         deletedBy: "",
         messages: { cleared: "" },
         createdAt: firebase.firestore.Timestamp.now().seconds * -1,
@@ -76,7 +76,7 @@ function GroupInfo() {
     }
   }, [
     shouldSubmit,
-    authentication.currentUser.email,
+    authentication.currentUser?.email,
     context,
     imageUrl,
     title,
@@ -141,7 +141,6 @@ function GroupInfo() {
               <SearchBarOption2
                 objRef={titleRef}
                 valueChanged={valueChanged}
-                
                 setChanged={setChanged}
                 placeholder={"Group subject"}
                 showCharacterCount

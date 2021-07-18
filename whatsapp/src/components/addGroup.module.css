@@ -3,21 +3,23 @@
   margin: var(--margin);
   margin-bottom: 0.5rem;
   border: none;
-  border-bottom: 0.1rem solid var(--lightGray);
+  border-bottom: 0.1rem solid var(--underlineBorderColor);
   outline: none;
+  background-color: inherit;
+  color: var(--fontDefaultColor);
 }
 .nextBtn {
-  background-color: var(--lemon);
+  background-color: var(--greenish);
   height: var(--nextBtnSize);
   width: var(--nextBtnSize);
   border-radius: 50%;
   border: none;
-  color: var(--profileInputBkgColor);
+  color: var(--remainBright);
   font-size: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-text-stroke: 2.5px var(--lemon);
+  -webkit-text-stroke: 2.5px var(--greenish);
   box-shadow: 0 0.15rem 0.1rem 0.001rem var(--boxShadowStyle1);
 }
 .userPicked {

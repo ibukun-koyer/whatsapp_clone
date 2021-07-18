@@ -22,18 +22,18 @@
   box-sizing: border-box;
 }
 .updatedText {
-  border-top: 0.03rem solid var(--lightGray);
+  border-top: 0.03rem solid var(--underlineBorderColor);
   border-bottom: none;
 }
 .updatedText:hover,
 .updatedIcon:hover {
-  background-color: inherit;
+  background-color: var(--bodyHover);
 }
 .newFocus {
   cursor: pointer;
 }
 .newFocus:hover {
-  background-color: var(--lightGray);
+  background-color: var(--bodyHover);
 }
 .status {
   color: var(--navHoverColor);
@@ -50,6 +50,7 @@
 }
 .username {
   font-weight: 400;
+  color: var(--fontDefaultColor);
 }
 .ellipsis {
   text-overflow: ellipsis;

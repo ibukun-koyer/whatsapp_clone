@@ -81,7 +81,7 @@ function ProfileTypeInput({ sectionName, limit, text }) {
             </Fragment>
           ) : (
             <Fragment>
-              <div>{text.current}</div>
+              <div className={classes.currentText}>{text.current}</div>
               <div className={classes.absolute}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

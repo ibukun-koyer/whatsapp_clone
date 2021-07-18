@@ -2,6 +2,7 @@
   justify-content: flex-start;
   border-left: 0.1rem solid var(--borderColor);
   border-bottom: 0.1rem solid var(--borderColor);
+  background-color: var(--panelHeaderBkg);
 }
 .ppUpdated {
   width: var(--navWidthSpace);
@@ -112,6 +113,8 @@
   border: none;
   border-radius: 2rem;
   outline: none;
+  background-color: var(--inputBkgColor);
+  color: var(--fontDefaultColor);
 }
 .pp {
   width: 100%;

@@ -1,6 +1,6 @@
 .header {
   height: var(--pageHeaderHeight);
-  background-color: var(--greenish);
+  background-color: var(--pageHeaderScreen1BkgColor);
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
@@ -14,9 +14,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: var(--remainBright);
 }
 .header > div > i {
-  -webkit-text-stroke: 2.5px var(--greenish);
+  -webkit-text-stroke: 2.5px var(--pageHeaderScreen1BkgColor);
   cursor: pointer;
   font-size: 1.5rem;
 }
@@ -39,21 +40,21 @@
   filter: invert(100%);
   width: 30px;
   height: 30px;
-  /* border-radius: 50%; */
 }
 .new {
   display: flex;
   width: 100%;
-  border-bottom: 0.03rem solid var(--lightGray);
+  border-bottom: 0.03rem solid var(--underlineBorderColor);
   padding: 0.8rem;
   align-items: center;
   cursor: pointer;
 }
 .new > span {
   padding-left: 1rem;
+  color: var(--fontDefaultColor);
 }
 .new:hover {
-  background-color: var(--lighterGray);
+  background-color: var(--bodyHover);
 }
 .space {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

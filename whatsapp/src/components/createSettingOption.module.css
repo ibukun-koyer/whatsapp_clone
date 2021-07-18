@@ -17,12 +17,13 @@
   width: calc(100% - var(--iconContainerSize));
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--darkGray);
+  border-bottom: 1px solid var(--underlineBorderColor);
   font-size: 21px;
   font-weight: 400;
   text-transform: capitalize;
+  color: var(--fontDefaultColor);
 }
 .containOpt:hover {
-  background-color: var(--darkGray);
+  background-color: var(--bodyHover);
   transition: 0.2s;
 }

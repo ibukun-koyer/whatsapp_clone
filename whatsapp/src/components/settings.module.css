@@ -34,6 +34,7 @@
 .topText {
   font-size: 1.2rem;
   font-weight: 500;
+  color: var(--fontDefaultColor);
 }
 .bottomText {
   font-weight: 200;
@@ -41,5 +42,5 @@
 }
 .myInfo:hover {
   transition: 0.2s;
-  background-color: var(--darkGray);
+  background-color: var(--bodyHover);
 }

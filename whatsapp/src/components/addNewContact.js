@@ -46,7 +46,7 @@ function AddNewContact() {
           });
         } else {
           //if u add urself
-          if (obj.uid === authentication.currentUser.uid) {
+          if (obj.uid === authentication.currentUser?.uid) {
             console.log("You cannot add urself");
             setFeedback({
               fbType: "red",
@@ -57,7 +57,7 @@ function AddNewContact() {
             //perform a check here to see if the contact has been stored already
             if (
               obj.contacts &&
-              obj.contacts[`${authentication.currentUser.uid}`]
+              obj.contacts[`${authentication.currentUser?.uid}`]
             ) {
               setFeedback({
                 fbType: "red",
@@ -79,14 +79,16 @@ function AddNewContact() {
 
               ref
                 .child(
-                  `contacts/${replaceInvalid(authentication.currentUser.email)}`
+                  `contacts/${replaceInvalid(
+                    authentication.currentUser?.email
+                  )}`
                 )
                 .set(info);
               firebase
                 .database()
                 .ref(
                   `users/${replaceInvalid(
-                    authentication.currentUser.email
+                    authentication.currentUser?.email
                   )}/contacts/${ref.key}`
                 )
                 .set(info);
@@ -105,8 +107,8 @@ function AddNewContact() {
     }
   }, [
     checkExistentce,
-    authentication.currentUser.email,
-    authentication.currentUser.uid,
+    authentication.currentUser?.email,
+    authentication.currentUser?.uid,
     fullScreen,
   ]);
   return (
@@ -173,7 +175,11 @@ function AddNewContact() {
             isValid,
             errors,
           }) => (
-            <Form noValidate onSubmit={handleSubmit}>
+            <Form
+              noValidate
+              onSubmit={handleSubmit}
+              className={classes.fontColor}
+            >
               <h3 style={{ textAlign: "center" }}>Add New Contact</h3>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>

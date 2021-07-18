@@ -30,27 +30,30 @@ function ChatPage() {
   // get the meeting room of the session
   useEffect(() => {
     // if context.state.email then it is a contact
-    if (context.state.email) {
-      async function getMeetingId() {
-        const ref = firebase
-          .database()
-          .ref(
-            `users/${replaceInvalid(
-              authentication.currentUser.email
-            )}/contacts/${context.state.email}`
-          );
+    if (context.state)
+      if (context.state.email) {
+        async function getMeetingId() {
+          const ref = firebase
+            .database()
+            .ref(
+              `users/${replaceInvalid(
+                authentication.currentUser
+                  ? replaceInvalid(authentication.currentUser?.email)
+                  : ""
+              )}/contacts/${context.state.email}`
+            );
 
-        await ref.once("value", (snapshot) => {
-          setMeetingRoom(snapshot.val());
-        });
+          await ref.once("value", (snapshot) => {
+            setMeetingRoom(snapshot.val());
+          });
+        }
+        getMeetingId();
+      } else {
+        // set meeting room to the stored meeting room if it is a group
+        if (!meetingRoom) setMeetingRoom(context.state.meetingRoom);
       }
-      getMeetingId();
-    } else {
-      // set meeting room to the stored meeting room if it is a group
-      if (!meetingRoom) setMeetingRoom(context.state.meetingRoom);
-    }
   }, [
-    authentication.currentUser.email,
+    authentication.currentUser?.email,
     context.state.email,
     context.state.createdAt,
   ]);
@@ -73,7 +76,7 @@ function ChatPage() {
     }
     //create a new text type, defined in messageTypeTemplates in helperfiles, that creates an object to be posted to the db
     const message = new Text(
-      replaceInvalid(authentication.currentUser.email),
+      replaceInvalid(authentication.currentUser?.email),
       replyObj,
       messageRef.current.value
     );
@@ -191,7 +194,11 @@ function ChatPage() {
       >
         <Chat
           meetingRoom={meetingRoom}
-          myEmail={replaceInvalid(authentication.currentUser.email)}
+          myEmail={
+            authentication.currentUser
+              ? replaceInvalid(authentication.currentUser?.email)
+              : ""
+          }
           show={show}
           setShow={setShow}
           bodyRef={bodyRef}

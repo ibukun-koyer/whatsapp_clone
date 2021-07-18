@@ -69,7 +69,7 @@ function AllMessages() {
     });
   }
   return (
-    <Fragment>
+    <div className={classes.bkgDefault}>
       {/* render top section */}
       <div className={classes.top + " " + classes.darkGray}>
         {/* render my profile picture */}
@@ -137,7 +137,7 @@ function AllMessages() {
       />
       {/* this is the part that renders the messages in all messages */}
       <MessageUpdates />
-    </Fragment>
+    </div>
   );
 }
 export default AllMessages;
