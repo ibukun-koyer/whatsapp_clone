@@ -9,7 +9,7 @@ function DefaultPage() {
         <div>
           <img
             src={
-              authentication.theme === "light"
+              authentication.settings.theme === "light"
                 ? "https://web.whatsapp.com/img/intro-connection-hq-light_9466a20e6d2921a21ac7ab82419be157.jpg"
                 : "https://web.whatsapp.com/img/intro-connection-dark_0ee01153183b5ebd9b296399cc2104b0.jpg"
             }

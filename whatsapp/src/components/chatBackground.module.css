@@ -1,0 +1,59 @@
+:root {
+  --colorPickerPad: 3rem;
+  --sizeOfColorPicker: 5.5rem;
+  --heightOfCheckboxContainer: 5rem;
+  --bottomMarginColorPicker: 2rem;
+}
+.containCheckBox {
+  margin: auto;
+  color: var(--btwBlackWhiteColor);
+  text-align: center;
+  height: var(--heightOfCheckboxContainer);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containCheckBox input {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+}
+.containCheckBox label {
+  font-size: 0.8rem;
+}
+.gridContainer {
+  display: grid;
+  width: 100%;
+  padding-left: var(--colorPickerPad);
+  padding-right: var(--colorPickerPad);
+  margin-bottom: var(--bottomMarginColorPicker);
+  box-sizing: border-box;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fit, var(--sizeOfColorPicker));
+  justify-content: center;
+  gap: 1rem;
+}
+.gridItem {
+  height: var(--sizeOfColorPicker);
+  width: var(--sizeOfColorPicker);
+  display: flex;
+  align-items: center;
+  color: var(--fontDefaultColor);
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: 0.1s;
+}
+.gridItem:hover {
+  border: 5px solid var(--colorPickerHoverColor);
+  transition: 0.1s;
+}
+.containBody {
+  height: calc(100% - var(--pageHeaderHeight));
+  background-color: var(--darkGray);
+  overflow: auto;
+}
+.selected {
+  border: 5px solid var(--greenish);
+  transition: 0.1s;
+}

@@ -21,14 +21,20 @@ function Theme() {
     e.preventDefault();
     setAnimateOff(true);
   }
+
+  function changeMode(theme) {
+    const obj = { ...authentication.settings };
+    obj.theme = theme;
+
+    localStorage.setItem("settings", JSON.stringify(obj));
+    authentication.setSettings(obj);
+  }
   function changeTheme(e) {
     e.preventDefault();
     if (selected.current.checked) {
-      localStorage.setItem("theme", "light");
-      authentication.setTheme("light");
+      changeMode("light");
     } else {
-      localStorage.setItem("theme", "dark");
-      authentication.setTheme("dark");
+      changeMode("dark");
     }
     setAnimateOff(true);
   }
@@ -53,7 +59,7 @@ function Theme() {
                 type="radio"
                 name="theme"
                 id="light"
-                defaultChecked={authentication.theme === "light"}
+                defaultChecked={authentication.settings.theme === "light"}
                 ref={selected}
               />
               <label htmlFor="light"> Light</label>
@@ -63,7 +69,7 @@ function Theme() {
                 type="radio"
                 name="theme"
                 id="dark"
-                defaultChecked={authentication.theme === "dark"}
+                defaultChecked={authentication.settings.theme === "dark"}
               />
               <label htmlFor="dark"> Dark</label>
             </div>

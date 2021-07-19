@@ -13,6 +13,8 @@ import Attachments from "./attachments";
 import SendSVG from "./SVG/sendSVG";
 import ThreeDotSVG from "./SVG/threeDotsSVG";
 import useKey from "./hooks/useKey";
+import BackgroundChat from "./backgroundChat";
+
 function ChatPage() {
   const reply = useReply();
   const authentication = useAuth();
@@ -149,22 +151,10 @@ function ChatPage() {
         </div>
       </div>
 
-      {/* if reply, decreaseHeight of text section - background color    */}
-      <div
-        className={
-          classes.backgroundColor +
-          " " +
-          (reply.isClosed() ? "" : classes.decreaseHeight)
-        }
-      ></div>
-      {/* if reply, decreaseHeight of text section - background    */}
-      <div
-        className={
-          classes.background +
-          " " +
-          (reply.isClosed() ? "" : classes.decreaseHeight)
-        }
-      ></div>
+      <BackgroundChat
+        shouldNotDecreaseHeight={reply.isClosed()}
+        settings={authentication.settings}
+      />
       {/* if reply, decreaseHeight of text section - body    */}
       <div
         className={

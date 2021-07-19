@@ -5,7 +5,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: auto;
-
 }
 
 code {
@@ -18,4 +17,13 @@ html {
 }
 .fa-times-thin:before {
   content: "\00d7";
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollBarColor);
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
 }

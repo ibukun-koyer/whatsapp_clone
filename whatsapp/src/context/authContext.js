@@ -27,7 +27,12 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email);
   };
 
-  const [theme, setTheme] = useState("light");
+  const [settings, setSettings] = useState({
+    theme: "light",
+    darkChatBkg: 0,
+    lightChatBkg: 0,
+    showDoodle: true,
+  });
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -66,8 +71,8 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, [userInfo.url, userInfo.username]);
   const value = {
-    theme,
-    setTheme,
+    settings,
+    setSettings,
     currentUser,
     signup,
     login,

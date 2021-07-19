@@ -48,6 +48,7 @@
   --dateColor: var(--iconColor);
   --hoverColor: var(--borderColor);
   --dropDownIconColor: var(--iconColor);
+  --colorPickerHoverColor: white;
 
   --yourReplyBkg: #07bc4c;
   --myReplyBkg: #00a5f4;
@@ -130,4 +131,5 @@
   --myMessageBkgInvisible: #05606200;
   --dropDownIconColor: white;
   --fileSendFooterBkg: #191f23;
+  --colorPickerHoverColor: var(--fileSendFooterBkg);
 }

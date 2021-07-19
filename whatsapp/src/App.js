@@ -12,14 +12,15 @@ import "./App.css";
 function App() {
   const authentication = useAuth();
   useLayoutEffect(() => {
-    let theme = localStorage.getItem("theme");
-    if (theme && theme !== authentication.theme) {
-      authentication.setTheme(theme);
+    let settings = localStorage.getItem("settings");
+    console.log(settings);
+    if (settings) {
+      authentication.setSettings(JSON.parse(settings));
     }
   }, []);
-
+  console.log(authentication.settings);
   return (
-    <div className={authentication.theme === "dark" ? "dark" : ""}>
+    <div className={authentication.settings.theme === "dark" ? "dark" : ""}>
       <Switch>
         {/* match path home */}
         <Route path="/" exact>
