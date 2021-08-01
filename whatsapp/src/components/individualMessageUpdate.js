@@ -96,7 +96,7 @@ function IndividualMessageUpdate({
       );
     } //else if i did not create the message
     else {
-      console.log(message[messageKey]);
+
       if (
         message[messageKey].readRecipient === "read" ||
         (message[messageKey].seenBy &&

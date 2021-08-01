@@ -37,17 +37,14 @@ function AddNewContact() {
         const obj = snapshot.val();
         //if it does not exist, send error using feedback state
         if (!obj) {
-
           setFeedback({
             fbType: "red",
             fbHeader: "An error has occured",
-            fbDes:
-              "please verify that the email address added is correct and try again.",
+            fbDes: "The user you are trying to add does not exist.",
           });
         } else {
           //if u add urself
           if (obj.uid === authentication.currentUser?.uid) {
-
             setFeedback({
               fbType: "red",
               fbHeader: "An error has occured",
