@@ -130,7 +130,7 @@ function MyProfile() {
           This is your username. This name will be visible to your WhatsApp
           Clone contacts.
         </div>
-        <ProfileTypeInput sectionName="Aboout" limit={80} text={aboutRef} />
+        <ProfileTypeInput sectionName="About" limit={80} text={aboutRef} />
       </div>
     </div>
   );
