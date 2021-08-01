@@ -9,7 +9,7 @@ import { useAuth } from "../context/authContext";
 import CenteredBtn from "./centeredBtn";
 import Alert from "./alert";
 import { useFull } from "../context/requestFullScreen";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import useKey from "./hooks/useKey";
 function AddNewContact() {
   const fullScreen = useFull();

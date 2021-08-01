@@ -8,7 +8,7 @@ import { useScreen2 } from "../context/screen2Context";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 
 import { useAuth } from "../context/authContext";
-import firebase from "firebase";
+import firebase from "firebase/app";
 function RenderMessageUpdate({
   imageUrl,
   displayName,

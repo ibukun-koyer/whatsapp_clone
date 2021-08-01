@@ -2,7 +2,7 @@ import external from "./allMessages.module.css";
 import classes from "./chatPage.module.css";
 import { useScreen2 } from "../context/screen2Context";
 import { useEffect, useRef, useState } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useAuth } from "../context/authContext";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 import { Text } from "./helperFiles/messageTypeTemplates";

@@ -7,7 +7,7 @@ import { pageNames } from "./helperFiles/globals";
 
 import { useState, useEffect } from "react";
 import { useFull } from "../context/requestFullScreen";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useAuth } from "../context/authContext";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 

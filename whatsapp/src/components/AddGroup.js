@@ -8,7 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 import { useAuth } from "../context/authContext";
 import CreateAllContact from "./createAllContact";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import scroll from "./showContacts.module.css";
 
 const initialHeight = 80;

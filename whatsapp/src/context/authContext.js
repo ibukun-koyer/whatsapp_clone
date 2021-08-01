@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { replaceInvalid } from "../components/helperFiles/replaceEmailInvalid";
 import { User } from "../components/helperFiles/userSchema";
 const AuthContext = React.createContext();

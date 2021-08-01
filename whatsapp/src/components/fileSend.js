@@ -6,7 +6,7 @@ import btn from "./addGroup.module.css";
 import Alert from "./alert";
 import { onImageChange, onImageSubmit } from "./helperFiles/imageHandler";
 import { useReply } from "../context/replyContext";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useAuth } from "../context/authContext";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 import { ImageAndVideo } from "./helperFiles/messageTypeTemplates";

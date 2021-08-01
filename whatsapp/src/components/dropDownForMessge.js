@@ -1,7 +1,7 @@
 import classes from "./dropDown.module.css";
 import { useOption } from "../context/showOptions";
 import { useEffect } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useReply } from "../context/replyContext";
 
 import shouldShowDropDown from "./helperFiles/shouldDropDown";

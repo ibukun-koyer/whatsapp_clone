@@ -7,7 +7,7 @@ import { useRef, useState, useEffect, Fragment } from "react";
 import btn from "./addGroup.module.css";
 import { onImageChange, onImageSubmit } from "./helperFiles/imageHandler";
 import Alert from "./alert";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useAuth } from "../context/authContext";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 import SearchBarOption2 from "./SearchBarOption2";

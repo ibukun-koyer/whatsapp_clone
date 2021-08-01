@@ -9,7 +9,7 @@ import classes from "./groupInfo.module.css";
 import myClasses from "./myProfile.module.css";
 import ProfileTypeInput from "./profileTypeInput";
 import Alert from "./alert";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useAuth } from "../context/authContext";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 

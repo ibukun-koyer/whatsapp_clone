@@ -1,7 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { pageNames } from "../components/helperFiles/globals";
 import { replaceInvalid } from "../components/helperFiles/replaceEmailInvalid";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/firestore";
 import { useAuth } from "./authContext";
 
 const screen1Context = createContext();

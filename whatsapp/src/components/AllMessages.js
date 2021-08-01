@@ -7,7 +7,7 @@ import MessageUpdates from "./messageUpdates";
 import shouldShowDropDown from "./helperFiles/shouldDropDown";
 import { useOption } from "../context/showOptions";
 import { useAuth } from "../context/authContext";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { multiIndex } from "./helperFiles/multiIndexStructure";
 
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";

@@ -6,7 +6,7 @@ import {
   Fragment,
   useLayoutEffect,
 } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import classes from "./chat.module.css";
 import ScrollBtn from "./scrollBtn";
 import MapMessage from "./mapMessageArray";
