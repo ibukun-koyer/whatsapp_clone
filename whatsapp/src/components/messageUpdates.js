@@ -28,6 +28,35 @@ function MessageUpdates({ storeDS, contacts, setContacts }) {
   // stores the clear value
   const clearValue = useRef(0);
 
+  //a ref that stores all references to message endpoints
+  const messageEndpointRef = useRef([]);
+
+  function changeMessage(message, snapshotValue) {
+    if (
+      parseInt(storeDS.current.getByRoom(snapshotValue).createdAt) >=
+        parseInt(message.key) &&
+      (!clearValue.current || clearValue.current > message.key)
+    ) {
+      // stored using refrences, hence we have a state below to prompt rerender
+      storeDS.current.updateMessage(snapshotValue, message.val(), message.key);
+    }
+  }
+  //listen to disable from chat.js
+
+  useEffect(() => {
+    messageEndpointRef.current.forEach((meetingRoom) => {
+      if (meetingRoom[1] === ctx.changed) {
+        meetingRoom[0].on("child_changed", (message) => {
+          changeMessage(message, meetingRoom[1]);
+          setContacts((prev) => prev + 1);
+        });
+
+        return () => {
+          meetingRoom[0].off("child_changed");
+        };
+      }
+    });
+  }, [ctx.changed, setContacts]);
   // a function used by both group and contact to help get all initial messages that show up allmessages and then also creates listeners
   // that check to see if there is a change to any of the contacts, also returns turned on sockets so they ca be turned off
   const getInitialMessages = useCallback(
@@ -39,20 +68,7 @@ function MessageUpdates({ storeDS, contacts, setContacts }) {
       // on child changes to the contact or group, update the message
       temp.on("child_changed", (message) => {
         // checks to see if the changed message is a current or future message, old message changes are disregarded
-
-        if (
-          parseInt(storeDS.current.getByRoom(snapshot.val()[i]).createdAt) >=
-            parseInt(message.key) &&
-          (!clearValue.current || clearValue.current > message.key)
-        ) {
-          // stored using refrences, hence we have a state below to prompt rerender
-          storeDS.current.updateMessage(
-            snapshot.val()[i],
-            message.val(),
-            message.key
-          );
-        }
-
+        changeMessage(message, snapshot.val()[i]);
         setContacts((prev) => prev + 1);
       });
 
@@ -96,6 +112,7 @@ function MessageUpdates({ storeDS, contacts, setContacts }) {
         //this section limits to the first message
         [["limitToFirst", 1]]
       );
+      messageEndpointRef.current.push([temp, snapshot.val()[i]]);
       return [temp, snapshot.val()[i]];
     }
   );

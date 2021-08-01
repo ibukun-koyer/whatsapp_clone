@@ -16,6 +16,7 @@ export function Screen2Provider({ children }) {
     users: [],
     meetingRoom: "",
   });
+  const [changed, setChanged] = useState(null);
   const [rerender, setReRender] = useState(undefined);
   const [imageUrl, setUrl] = useState([]);
   const urlFor = useRef();
@@ -45,6 +46,8 @@ export function Screen2Provider({ children }) {
     setMeetingRoom,
     rerender,
     setRender,
+    changed,
+    setChanged,
   };
   return <context.Provider value={values}>{children}</context.Provider>;
 }
