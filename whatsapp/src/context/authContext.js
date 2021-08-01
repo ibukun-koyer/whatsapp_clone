@@ -61,6 +61,7 @@ export function AuthProvider({ children }) {
               firebase
                 .database()
                 .ref(`users/${replaceInvalid(user.email)}/online`)
+                .child("/current")
                 .set(true);
             });
           });

@@ -26,7 +26,7 @@ function GroupInfo() {
   const context = useScreen1();
   const titleRef = useRef();
   const [valueChanged, setChanged] = useState(0);
-  // console.log(context.state.transferData);
+
   const title = titleRef.current ? titleRef.current.value : "";
   useEffect(() => {
     async function createGroup(url) {
@@ -151,7 +151,7 @@ function GroupInfo() {
                 <button
                   className={btn.nextBtn + " " + classes.animate}
                   onClick={() => {
-                    console.log(shouldSubmit);
+             
                     submit(true);
                   }}
                 >

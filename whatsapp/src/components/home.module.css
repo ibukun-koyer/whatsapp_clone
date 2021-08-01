@@ -1,4 +1,3 @@
-
 .green {
   height: var(--greenHeight);
 }
@@ -14,5 +13,8 @@
   .green {
     position: fixed;
     top: 0;
+  }
+  body {
+    overflow-y: auto;
   }
 }

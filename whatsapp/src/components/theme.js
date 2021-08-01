@@ -1,8 +1,6 @@
 import myClasses from "./theme.module.css";
 import classes from "./addNewContact.module.css";
-import { Form } from "react-bootstrap";
-import { Formik } from "formik";
-import CenteredBtn from "./centeredBtn";
+
 import form from "./signup.module.css";
 import useKey from "./hooks/useKey";
 import { useFull } from "../context/requestFullScreen";

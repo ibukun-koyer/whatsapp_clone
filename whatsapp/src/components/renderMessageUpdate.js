@@ -21,6 +21,7 @@ function RenderMessageUpdate({
   email,
   online,
   status,
+  display_name_unaffected,
 }) {
   const [hover, setHover] = useState(false);
   const context = useScreen2();
@@ -47,7 +48,7 @@ function RenderMessageUpdate({
         if (type === "contact") {
           context.setPage({
             type: "contact",
-            username: displayName,
+            username: display_name_unaffected,
             email,
             url: imageUrl,
             status,

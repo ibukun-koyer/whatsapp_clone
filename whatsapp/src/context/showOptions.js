@@ -38,13 +38,13 @@ export function OptionsProvider({ children }) {
   }
   function setShowOption(bool) {
     if (bool === true && showOption === true) {
-      console.log(1);
+
       setShow(1);
     } else if (bool === true && showOption === 1) {
-      console.log(true);
+
       setShow(true);
     } else {
-      console.log(bool);
+
       setShow(bool);
     }
   }

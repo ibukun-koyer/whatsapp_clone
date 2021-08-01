@@ -1,3 +1,6 @@
+:root {
+  --myIconPad: 0.8rem;
+}
 .header {
   height: var(--pageHeaderHeight);
   background-color: var(--pageHeaderScreen1BkgColor);
@@ -45,7 +48,7 @@
   display: flex;
   width: 100%;
   border-bottom: 0.03rem solid var(--underlineBorderColor);
-  padding: 0.8rem;
+  padding: var(--myIconPad);
   align-items: center;
   cursor: pointer;
 }

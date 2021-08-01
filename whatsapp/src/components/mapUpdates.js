@@ -9,7 +9,7 @@ function MapUpdates({ storeDS }) {
     <div>
       {/* map the sorted multiindex array */}
       {storeDS.current.sortedOutput().map((curr, index) => {
-        if (!curr) {
+        if (!curr || curr.hide) {
           return null;
         } else if (curr.createdAt !== 0) {
           // only render if the createdat time is not 0

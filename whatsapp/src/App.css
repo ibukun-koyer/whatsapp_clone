@@ -61,6 +61,8 @@
   --greenAlertColor: green;
   --greenAlertBkg: rgb(155, 255, 155);
   /* regular value variables */
+  --size-of-signup-image: 10rem;
+  --form-left: 50%;
   --margin: 2rem;
   --nextBtnSize: 3rem;
   --ppWidth: 80%;

@@ -11,7 +11,7 @@ import Chat from "./chat";
 import { useReply } from "../context/replyContext";
 import Attachments from "./attachments";
 import SendSVG from "./SVG/sendSVG";
-import ThreeDotSVG from "./SVG/threeDotsSVG";
+
 import useKey from "./hooks/useKey";
 import BackgroundChat from "./backgroundChat";
 
@@ -28,6 +28,20 @@ function ChatPage() {
   const bodyRef = useRef();
 
   const [meetingRoom, setMeetingRoom] = useState("");
+  const offlineString = (online) => {
+    let blank_str = "Last seen ";
+    return (
+      blank_str +
+      (new Date(online).toLocaleDateString() === new Date().toLocaleDateString()
+        ? "Today"
+        : new Date(online).toLocaleDateString())
+    );
+  };
+  const [current_status, set_current_status] = useState(
+    context.state.online === true
+      ? "Online"
+      : offlineString(context.state.online)
+  );
 
   // get the meeting room of the session
   useEffect(() => {
@@ -59,7 +73,24 @@ function ChatPage() {
     context.state.email,
     context.state.createdAt,
   ]);
+  useEffect(() => {
+    if (context.state.type === "contact") {
+      let ref = firebase.database().ref(`users/${context.state.email}`);
 
+      ref.on("child_changed", (snapshot) => {
+        if (snapshot.key === "online") {
+          set_current_status(
+            snapshot.val().current === true
+              ? "Online"
+              : offlineString(snapshot.val().current)
+          );
+        }
+      });
+      return () => {
+        ref.off("child_changed");
+      };
+    }
+  }, []);
   // send a message
   function send() {
     // if reply isn't opened, we dont account for it, else we define a reply object
@@ -127,28 +158,29 @@ function ChatPage() {
           </div>
           {/* render the username or ggrouptitle */}
           <div className={classes.userInfo}>
-            <div>
+            <div className={classes.username}>
               {context.state.username
                 ? context.state.username
                 : context.state.groupTitle}
             </div>
             {/* render status or members of the group */}
             <div className={classes.onlineStat}>
-              {context.state.online === true
-                ? "Online"
-                : context.state.online === false
-                ? "Last seen at x"
-                : "should be user names"}
+              {context.state.type === "contact"
+                ? current_status
+                : context.state.users
+                    .map((curr) => {
+                      return curr[1];
+                    })
+                    .toString()
+                    .replaceAll(",", ", ")}
             </div>
           </div>
         </div>
 
         {/* render the navoptions, search and dropdown on chat page nav */}
-        <div className={classes.navOptions}>
-          {" "}
+        {/* <div className={classes.navOptions}>
           <i className="fa fa-search" aria-hidden="true"></i>
-          <ThreeDotSVG />
-        </div>
+        </div> */}
       </div>
 
       <BackgroundChat

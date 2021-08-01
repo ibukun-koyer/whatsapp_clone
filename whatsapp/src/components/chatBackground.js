@@ -1,11 +1,10 @@
 import myClasses from "./chatBackground.module.css";
-import classes from "./settings.module.css";
 import { useScreen1 } from "../context/screen1Context";
 import page from "./page.module.css";
-import { defaultUrl, pageNames } from "./helperFiles/globals";
+import { pageNames } from "./helperFiles/globals";
 import PageHeader from "./pageHeader";
 import { useEffect, useRef, useState } from "react";
-import { useFull } from "../context/requestFullScreen";
+
 import { useScreen2 } from "../context/screen2Context";
 import { useAuth } from "../context/authContext";
 import {
@@ -105,7 +104,7 @@ function ChatBacground() {
                 style={{
                   backgroundColor: color.mainColor,
                 }}
-                onClick={() => setSelected(index)}
+                // onClick={() => setSelected(index)}
                 onMouseEnter={() => shallowUpdateSettings(index)}
                 onMouseLeave={() =>
                   shallowUpdateSettings(currentSelection.current)

@@ -13,11 +13,11 @@
 }
 .form {
   background-color: var(--profileInputBkgColor);
-  left: calc(50% / 2);
+  left: calc((100% - var(--form-left)) / 2);
   padding: 4rem;
   position: absolute;
   top: 150px;
-  width: 50%;
+  width: var(--form-left);
 
   box-shadow: 0 0 0.2rem 0.2rem var(--boxShadowStyle2);
   color: var(--fontDefaultColor);
@@ -25,8 +25,11 @@
 .title {
   position: absolute;
   top: 19px;
-  left: 300px;
+  left: 20%;
   color: var(--fontDefaultColor);
+}
+.title > span {
+  color: var(--remainBright);
 }
 .icon {
   width: 6rem;
@@ -47,8 +50,8 @@
   position: relative;
 }
 .userImage {
-  width: 10rem;
-  height: 10rem;
+  width: var(--size-of-signup-image);
+  height: var(--size-of-signup-image);
   border-radius: 50%;
   background-color: var(--bkgWhiteColor);
   overflow: hidden;
@@ -56,14 +59,14 @@
 .imagePicker {
   position: absolute;
   /* opacity: 0; */
-  width: 10rem;
-  height: 10rem;
+  width: var(--size-of-signup-image);
+  height: var(--size-of-signup-image);
   border-radius: 50%;
   opacity: 0;
 }
 .pp {
-  width: 10rem;
-  height: 10rem;
+  width: var(--size-of-signup-image);
+  height: var(--size-of-signup-image);
   object-fit: contain;
 }
 .alert {
@@ -108,4 +111,30 @@
   background-color: inherit;
 
   border-radius: 0.5rem;
+}
+.heightOfBackDrop {
+  height: 100vh;
+}
+@media (max-width: 660px) {
+  /* body {
+    overflow-y: hidden;
+  } */
+  :root {
+    --form-left: 100% !important;
+    --size-of-signup-image: 6rem !important;
+  }
+}
+@media (max-width: 470px) {
+  .title {
+    width: 100%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 400px) {
+  .form {
+    padding: 2rem;
+  }
 }

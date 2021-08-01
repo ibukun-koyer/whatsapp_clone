@@ -24,7 +24,7 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
       return [...curr, ""];
     }),
   });
-  console.log(files.current);
+
 
   const [hover, setHover] = useState("");
   //start of experimental section
@@ -65,7 +65,7 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
       }
       if (index > 0) {
         setCurrentlySelected(`${last + 1}`);
-        console.log(files.current);
+
       }
     }
   }
@@ -76,11 +76,11 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
   const ref = useRef();
   function inputChange() {
     files.current[currentlySelected][caption] = ref.current.value;
-    console.log(files.current[currentlySelected][caption]);
+
   }
   const direction = useCallback(
     (curr) => {
-      console.log(curr, currentlySelected);
+
       if (parseInt(curr) < parseInt(currentlySelected)) {
         animationDir.current = "forward";
       } else if (parseInt(curr) > parseInt(currentlySelected)) {
@@ -93,14 +93,14 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
     const keydown = (e) => {
       if (e.code === "ArrowRight") {
         const nextImage = arr[arr.indexOf(currentlySelected) + 1];
-        console.log(nextImage, arr.indexOf(currentlySelected) + 1);
+
         if (nextImage) {
           direction(nextImage);
           setCurrentlySelected(nextImage);
         }
       } else if (e.code === "ArrowLeft") {
         const nextImage = arr[arr.indexOf(currentlySelected) - 1];
-        console.log(nextImage, arr.indexOf(currentlySelected) - 1);
+
         if (nextImage) {
           direction(nextImage);
           setCurrentlySelected(nextImage);
@@ -134,14 +134,14 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
           files.current[i][caption],
           files.current[i][type]
         );
-        console.log(replyObj);
+
         const sendRef = firebase
           .database()
           .ref(`/${contactType}s/${meetingRoom}/messages`)
           .child(Math.ceil(Date.now() / 1000 + parseInt(i)) * -1);
 
         sendRef.set(message.message);
-        console.log(Math.ceil(Date.now() / 1000 + parseInt(i)), i);
+
 
         sendRef.update({ data: { d: false } });
         setCompleted((prev) => prev + 1);
@@ -159,14 +159,14 @@ function FileSend({ setImageUrl, imageUrl, meetingRoom, contactType }) {
     }
   }
   useEffect(() => {
-    console.log(completed);
+
     if (completed === arr.length) {
       setImageUrl([]);
     }
   }, [completed, setImageUrl, arr.length]);
 
   useKey("Enter", () => {
-    console.log(document.activeElement === ref.current);
+
     if (ref.current.value.length && document.activeElement === ref.current) {
       handleSend();
     }

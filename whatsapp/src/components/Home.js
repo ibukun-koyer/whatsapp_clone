@@ -75,8 +75,8 @@ function Home() {
     <Fragment>
       {/* this is the body background, the green and grey you see */}
       <div
-        className={classes.bkg}
-        style={{ height: "100vh" }}
+        className={`${classes.bkg} ${classes.heightOfBackDrop}`}
+        // style={{ height: "100vh" }}
         ref={bodyRef}
         onClick={handleCloseOption}
       >

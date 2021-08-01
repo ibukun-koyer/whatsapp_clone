@@ -32,13 +32,14 @@ function ShowContacts() {
         .ref(`/users/${replaceInvalid(i)}`)
         .once("value", (snapshot) => {
           const { username, url, status, online } = snapshot.val();
-          // console.log(online);
+
           myContacts.push({
             email: replaceInvalid(i),
             username,
             url,
             status,
-            online,
+            online: online.current,
+            hide: false,
           });
           // allContacts(myContacts);
         });
@@ -49,7 +50,7 @@ function ShowContacts() {
           await get(i);
         }
 
-        // console.log(myContacts);
+
         allContacts(
           myContacts.sort(function (a, b) {
             var nameA = a.username.toUpperCase(); // ignore upper and lowercase
@@ -68,13 +69,28 @@ function ShowContacts() {
       }
     });
   }, [fullScreen.showFull, authentication.currentUser.email]);
+
   function handleContactClick() {
     fullScreen.provideFullScreen(1);
   }
   function handleGroupClick() {
     context.setPage({ prev: pageNames.showContacts, curr: pageNames.addGroup });
   }
-  // console.log(contacts.length);
+  function searchOngoing(searchStr) {
+    allContacts((prev) => {
+      const newArray = [...prev];
+      return newArray.map((i) => {
+ 
+        if (i.username.toLowerCase().indexOf(searchStr.toLowerCase()) === -1) {
+          i.hide = true;
+          return i;
+        } else {
+          i.hide = false;
+          return i;
+        }
+      });
+    });
+  }
   return (
     <div
       className={
@@ -98,7 +114,11 @@ function ShowContacts() {
           });
         }}
       />
-      <SearchBar def={true} placeholder="Search contacts" />
+      <SearchBar
+        def={true}
+        placeholder="Search contacts"
+        editFxn={searchOngoing}
+      />
 
       <div
         style={{

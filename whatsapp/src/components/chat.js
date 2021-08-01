@@ -61,7 +61,7 @@ function Chat({
         }
       }
     },
-    [meetingRoom, myEmail]
+    [meetingRoom, myEmail, type, length]
   );
   const cleared = useRef("");
   // updates chats based on new message entered, THIS IS AFFECTED BY messageUpdate, closing this results to the other being closed and turns off listening on changes
@@ -82,7 +82,7 @@ function Chat({
     // return () => {
     //   ref.off("child_changed");
     // };
-  }, [meetingRoom, updateDb, track]);
+  }, [meetingRoom, updateDb, track, type]);
 
   //whenever we clear chats, clear message and alert messageUpdates of the changes
   useEffect(() => {
@@ -102,10 +102,9 @@ function Chat({
       }
     });
     return () => {
-      console.log("child changed turned off");
       ref.off("child_changed");
     };
-  }, [meetingRoom, myEmail]);
+  }, [meetingRoom, myEmail, scr2Ctx, type]);
 
   // update the message based and paginate results
   const getMessages = useCallback(
@@ -179,7 +178,7 @@ function Chat({
           });
       }
     },
-    [meetingRoom, queryCursor, myEmail, updateDb]
+    [meetingRoom, queryCursor, myEmail, updateDb, type]
   );
   // if we are still fetching, loading is set to true
   useEffect(() => {

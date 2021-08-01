@@ -8,6 +8,7 @@ import DemoChatBackground from "./demoChatBackground";
 
 function Screen2() {
   const context = useScreen2();
+
   return (
     <div className={classes.screen}>
       {/* replyprovider is a context that keeps track of your reply before you send it, i.e the reply above the message you are composing*/}

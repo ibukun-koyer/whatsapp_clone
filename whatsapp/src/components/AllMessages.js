@@ -1,5 +1,5 @@
 import classes from "./allMessages.module.css";
-import { Fragment, useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import SearchBar from "./searchBar";
 import { useScreen1 } from "../context/screen1Context";
 import { pageNames } from "./helperFiles/globals";
@@ -7,7 +7,10 @@ import MessageUpdates from "./messageUpdates";
 import shouldShowDropDown from "./helperFiles/shouldDropDown";
 import { useOption } from "../context/showOptions";
 import { useAuth } from "../context/authContext";
+import firebase from "firebase";
+import { multiIndex } from "./helperFiles/multiIndexStructure";
 
+import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 function AllMessages() {
   const context = useScreen1();
   const optionCtx = useOption();
@@ -15,6 +18,9 @@ function AllMessages() {
   const refToDiv = useRef();
   const [imageIsLoading, setImageIsLoading] = useState(true);
   const authentication = useAuth();
+
+  const storeDS = useRef(new multiIndex());
+  const [contacts, setContacts] = useState(0);
 
   const optionArr = ["New group", "Profile", "Settings", "Log out"];
   useEffect(() => {
@@ -41,7 +47,13 @@ function AllMessages() {
           curr: pageNames.settings,
         });
       }
+      //we are login out
       if (optionCtx.getOutput === optionArr[3]) {
+        firebase
+          .database()
+          .ref(`/users/${replaceInvalid(authentication.currentUser?.email)}`)
+          .child("/online/current")
+          .set(`${new Date()}`);
         authentication.logout();
       }
       // clean out the output field after acting upon the selected action
@@ -67,6 +79,33 @@ function AllMessages() {
       prev: pageNames.allMessages,
       curr: pageNames.myProfile,
     });
+  }
+  function searchOngoing(searchStr) {
+    for (let message in storeDS.current.array) {
+      if (storeDS.current.array[message].groupTitle) {
+        if (
+          storeDS.current.array[message].groupTitle
+            .toLowerCase()
+            .indexOf(searchStr.toLowerCase()) === -1
+        ) {
+          storeDS.current.array[message].hide = true;
+        } else {
+          storeDS.current.array[message].hide = false;
+        }
+      }
+      if (storeDS.current.array[message].username) {
+        if (
+          storeDS.current.array[message].username
+            .toLowerCase()
+            .indexOf(searchStr.toLowerCase()) === -1
+        ) {
+          storeDS.current.array[message].hide = true;
+        } else {
+          storeDS.current.array[message].hide = false;
+        }
+      }
+    }
+    setContacts((prev) => prev + 1);
   }
   return (
     <div className={classes.bkgDefault}>
@@ -134,9 +173,14 @@ function AllMessages() {
         def={false}
         placeholder="Search or start new chat"
         shadow={true}
+        editFxn={searchOngoing}
       />
       {/* this is the part that renders the messages in all messages */}
-      <MessageUpdates />
+      <MessageUpdates
+        storeDS={storeDS}
+        contacts={contacts}
+        setContacts={setContacts}
+      />
     </div>
   );
 }

@@ -29,11 +29,8 @@ function PasswordRecovery() {
             .resetPassword(values.email)
             .then(() => {
               setSent(true);
-              console.log("successful");
             })
-            .catch((e) => {
-              console.log("failed");
-            });
+            .catch((e) => {});
         }}
         initialValues={{
           email: "",
@@ -98,7 +95,7 @@ function PasswordRecovery() {
           color: "var(--pureBlack)",
         }}
       >
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/signup" style={{ textDecoration: "none" }}>
           Sign up
         </Link>
         <span> | </span>

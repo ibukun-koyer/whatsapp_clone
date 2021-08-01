@@ -36,7 +36,7 @@ export function Screen1Provider({ children }) {
     state,
     setPage,
   };
-  console.log(myInfo);
+
   return (
     <screen1Context.Provider value={values}>{children}</screen1Context.Provider>
   );

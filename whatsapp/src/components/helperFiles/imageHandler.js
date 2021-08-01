@@ -1,9 +1,9 @@
 export function onImageChange(fileObj, setImageError, setImageRef) {
-  console.log(fileObj);
+
   if (fileObj !== undefined) {
     if (fileObj.size > 1048576) {
       setImageError("Image size must not exceed 1MB");
-      console.log("big file");
+
     } else if (!/^(image|video)/i.test(fileObj.type)) {
       setImageError("File must be an image or a video");
     } else {
@@ -11,14 +11,14 @@ export function onImageChange(fileObj, setImageError, setImageRef) {
         const objectURL = window.URL.createObjectURL(fileObj);
         setImageError("");
         if (setImageRef) {
-          console.log("it thinks the function exist");
+      
           setImageRef(objectURL);
         } else {
-          console.log("actually about to return the url");
+     
           return objectURL;
         }
       } catch (e) {
-        console.log(e);
+ 
         setImageError("File is incompatible, Please try another");
       }
     }

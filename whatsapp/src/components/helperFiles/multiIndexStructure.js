@@ -8,7 +8,7 @@ export class multiIndex {
     const index = `${obj.meetingRoom}-->${obj.createdAt}`;
 
     if (this.array[index] === undefined) {
-      this.array = { ...this.array, [index]: obj };
+      this.array = { ...this.array, [index]: { ...obj, hide: false } };
       this.length++;
     }
     // }
@@ -45,9 +45,7 @@ export class multiIndex {
     ];
   }
   getByRoom(meetingRoom) {
-    console.log(
-      this.array[Object.keys(this.array)[this.indexOfRoom(meetingRoom)]]
-    );
+
     return this.array[Object.keys(this.array)[this.indexOfRoom(meetingRoom)]];
   }
   remove(meetingRoom) {

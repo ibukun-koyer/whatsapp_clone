@@ -11,7 +11,7 @@ import { onImageChange, onImageSubmit } from "./helperFiles/imageHandler";
 // let height = window.innerHeight + "px";
 
 function SignUp() {
-  // console.log(process.env.REACT_APP_cloudinary);/
+
   const history = useHistory();
   const [serverError, setServerError] = useState("");
   const defaultImage =
@@ -44,10 +44,10 @@ function SignUp() {
               .signup(values.email, values.password)
               .then(() => {
                 setServerError("");
-                console.log("successful");
+         
               })
               .catch((e) => {
-                console.log("failed");
+       
                 setServerError(e.message);
               });
           };

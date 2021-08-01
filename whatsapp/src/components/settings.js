@@ -63,7 +63,10 @@ function Settings() {
       >
         <div className={classes.containImage}>
           <div>
-            <img src={info ? context.myInfo.url : defaultUrl} />
+            <img
+              src={info ? context.myInfo.url : defaultUrl}
+              alt="profile_picture"
+            />
           </div>
         </div>
         <div className={classes.containText}>

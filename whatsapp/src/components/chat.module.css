@@ -65,7 +65,18 @@
   word-break: break-all;
   box-sizing: border-box;
 }
-
+@media (max-width: 800px) {
+  .myMessageFloat,
+  .yourMessageFloat {
+    /* width: 100%; */
+    width: fit-content;
+    max-width: 100%;
+  }
+  .imageType,
+  .wrapVid {
+    max-width: 100%;
+  }
+}
 .time {
   display: flex;
 

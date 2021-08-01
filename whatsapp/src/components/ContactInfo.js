@@ -1,5 +1,6 @@
 import classes from "./showContacts.module.css";
 import ownClass from "./contactInfo.module.css";
+import { sliceText } from "./chatPage.module.css";
 import { useScreen2 } from "../context/screen2Context";
 // import { useRef } from "react";
 function ContactInfo({
@@ -16,7 +17,7 @@ function ContactInfo({
 
   const context = useScreen2();
   const handleClick = () => {
-    // console.log(deleted);
+
     if (fxnId === 1) {
       onClick((prev) => {
         const bool = prev.some((curr) => {
@@ -34,7 +35,7 @@ function ContactInfo({
       //   isAdded.current = true;
     }
     if (fxnId === 2) {
-      console.log(email);
+
       context.setPage({
         type: fxnId === 2 ? "contact" : "group",
         username,
@@ -64,9 +65,13 @@ function ContactInfo({
           </div>
         </div>
         <div className={classes.new + " " + ownClass.updatedText}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span className={ownClass.username}>{username}</span>
-            <span className={ownClass.status}>{status}</span>
+          <div
+            style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          >
+            <span className={`${ownClass.username} ${sliceText}`}>
+              {username}
+            </span>
+            <span className={`${ownClass.status} ${sliceText}`}>{status}</span>
           </div>
         </div>
       </div>

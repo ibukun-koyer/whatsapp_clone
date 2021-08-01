@@ -2,16 +2,16 @@ import classes from "./messageUpdates.module.css";
 import firebase from "firebase/app";
 import { replaceInvalid } from "./helperFiles/replaceEmailInvalid";
 import { useAuth } from "../context/authContext";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { multiIndex } from "./helperFiles/multiIndexStructure";
+import { useCallback, useEffect, useRef } from "react";
+
 import MapUpdates from "./mapUpdates";
 import { useScreen2 } from "../context/screen2Context";
-function MessageUpdates() {
+function MessageUpdates({ storeDS, contacts, setContacts }) {
   // define context
   const authentication = useAuth();
-  const [contacts, setContacts] = useState(0);
+
   const ctx = useScreen2();
-  const storeDS = useRef(new multiIndex());
+
   // creates a means to query database, a way to cut down writing more code, if u will
   async function fetcher(queryString, callback, addons = []) {
     let ref = firebase.database().ref(queryString);
@@ -39,6 +39,7 @@ function MessageUpdates() {
       // on child changes to the contact or group, update the message
       temp.on("child_changed", (message) => {
         // checks to see if the changed message is a current or future message, old message changes are disregarded
+
         if (
           parseInt(storeDS.current.getByRoom(snapshot.val()[i]).createdAt) >=
             parseInt(message.key) &&
@@ -69,8 +70,10 @@ function MessageUpdates() {
               return snapshot;
             })
             .then((snapshot) => {
-              if (snapshot.val()[myEmail] !== undefined) {
-                return snapshot.val()[myEmail];
+              if (snapshot) {
+                if (snapshot.val()[myEmail] !== undefined) {
+                  return snapshot.val()[myEmail];
+                }
               }
             });
 
@@ -86,7 +89,6 @@ function MessageUpdates() {
 
           //given each message, proceed to get the users info and create an multiindex obj
           fetcher(infoQueryStr, (info) => {
-            console.log(info.val());
             add(info, message, isMessageCleared);
             setContacts((prev) => prev + 1);
           });
@@ -101,7 +103,7 @@ function MessageUpdates() {
     // if screen 2 context method, rerender is setContacts, then this means we clear the messages, the rerender is set in chat.js
     if (ctx.rerender?.type) {
       // get the data at the meeting room
-      const thisMessage = storeDS.current.getByRoom(ctx.rerender.meetingRoom);
+      // const thisMessage = storeDS.current.getByRoom(ctx.rerender.meetingRoom);
 
       // update multiindex Array, note, 0 for contacts means that the index will be ignored by mapUpdates, but for group, we set to
       //cleared and the multiindex sets the time to its previous time, this ensures that we can still sort.
@@ -136,7 +138,7 @@ function MessageUpdates() {
             (info, message, isMessageCleared) => {
               storeDS.current.add({
                 username: info.val().username,
-                online: info.val().online,
+                online: info.val().online.current,
                 url: info.val().url,
                 uid: info.val().uid,
                 status: info.val().status,

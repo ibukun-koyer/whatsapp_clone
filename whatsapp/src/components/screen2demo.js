@@ -10,8 +10,8 @@ function DefaultPage() {
           <img
             src={
               authentication.settings.theme === "light"
-                ? "https://web.whatsapp.com/img/intro-connection-hq-light_9466a20e6d2921a21ac7ab82419be157.jpg"
-                : "https://web.whatsapp.com/img/intro-connection-dark_0ee01153183b5ebd9b296399cc2104b0.jpg"
+                ? process.env.PUBLIC_URL + "/light_mode_phone_icon.jpg"
+                : process.env.PUBLIC_URL + "/dark_mode_phone_icon.jpg"
             }
             alt="keep your phone connected"
           />
@@ -26,8 +26,10 @@ function DefaultPage() {
         <div className={classes.demoDes + " " + classes.getWhatsapp}>
           <i className="fa fa-laptop "></i> WhatsApp is available for windows.{" "}
           <a
+            target="_blank"
             href="https://www.whatsapp.com/download"
             className={classes.refToDownload}
+            rel="noreferrer"
           >
             Get it here
           </a>

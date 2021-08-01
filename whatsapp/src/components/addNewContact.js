@@ -32,12 +32,12 @@ function AddNewContact() {
       const ref = firebase
         .database()
         .ref(`users/${replaceInvalid(emailRef.current.value)}`);
-      console.log(replaceInvalid(emailRef.current.value));
+
       ref.once("value", (snapshot) => {
         const obj = snapshot.val();
         //if it does not exist, send error using feedback state
         if (!obj) {
-          console.log("user does not exist");
+
           setFeedback({
             fbType: "red",
             fbHeader: "An error has occured",
@@ -47,7 +47,7 @@ function AddNewContact() {
         } else {
           //if u add urself
           if (obj.uid === authentication.currentUser?.uid) {
-            console.log("You cannot add urself");
+
             setFeedback({
               fbType: "red",
               fbHeader: "An error has occured",

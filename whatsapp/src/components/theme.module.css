@@ -10,6 +10,11 @@
   top: 0;
   left: 0;
 }
+@media (max-width: 500px) {
+  .updatedForm {
+    width: 100%;
+  }
+}
 .header {
   color: var(--fontDarkColor);
   font-weight: 400;

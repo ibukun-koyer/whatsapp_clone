@@ -26,7 +26,8 @@ function IndividualMessageUpdate({
   // the display name is either contacts name or the groupTitle
   let displayName =
     type === "contact" ? indivInfo.username : indivInfo.groupTitle;
-
+  //unaffected display name, not affected by bold changes
+  let display_name_unaffected = displayName;
   // calculate date based on a function specified in helperfiles
   let messageDate = date(createdAt, today, yesterday, cutOffDate);
   const myEmail = authentication.currentUser
@@ -36,6 +37,7 @@ function IndividualMessageUpdate({
   let messageKey = Object.keys(message)[0];
 
   // innerText based on what type of message this is
+
   let innerText = (
     <span>
       {" "}
@@ -94,7 +96,11 @@ function IndividualMessageUpdate({
       );
     } //else if i did not create the message
     else {
-      if (message[messageKey].readRecipient === "read") {
+      if (
+        message[messageKey].readRecipient === "read" ||
+        (message[messageKey].seenBy &&
+          message[messageKey].seenBy.indexOf(myEmail)) !== -1
+      ) {
         baseMessage = innerText;
       } else {
         baseMessage = (
@@ -102,6 +108,7 @@ function IndividualMessageUpdate({
             {innerText}
           </b>
         );
+
         displayName = (
           <b style={{ color: "var(--messageReceivedBoldColor)" }}>
             {displayName}
@@ -116,6 +123,7 @@ function IndividualMessageUpdate({
       imageUrl={url}
       text={baseMessage}
       displayName={displayName}
+      display_name_unaffected={display_name_unaffected}
       date={messageDate}
       currentlyClicked={currentlyClicked}
       setCurrentlyClicked={setCurrentlyClicked}

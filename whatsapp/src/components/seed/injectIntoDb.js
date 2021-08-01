@@ -1,7 +1,5 @@
-
 let firebase = require("firebase/app");
 require("firebase/auth");
-
 
 const url =
   "https://th.bing.com/th/id/OIP.Psj56s3oU0aQkeZNr_rqpAEsEs?pid=ImgDet&rs=1";
@@ -19,7 +17,7 @@ const auth = app.auth();
 firebase = require("firebase");
 function replaceInvalid(str) {
   let newStr = str.toString();
-  console.log(typeof str);
+
   newStr = newStr.replace(/[.#$\[\]]/g, "G-XT136L2BER");
   return newStr;
 }
@@ -50,12 +48,8 @@ function fill() {
   function createUser(email, password) {
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log("successful");
-      })
-      .catch((e) => {
-        console.log("failed", e);
-      });
+      .then((user) => {})
+      .catch((e) => {});
   }
   const users = 2;
   function createEmail() {
@@ -75,7 +69,7 @@ function fill() {
         .then(() => {
           const userRef = app.database().ref("/users");
           const hashString = replaceInvalid(user.email);
-          console.log(user.uid, user.photoURL, user.displayName);
+   
           const newUser = {
             uid: user.uid,
             username: user.displayName,
@@ -89,7 +83,6 @@ function fill() {
           };
           userRef.child(hashString).set(newUser);
         });
-
     }
   });
 }

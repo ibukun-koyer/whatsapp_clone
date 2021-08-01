@@ -28,10 +28,10 @@ function Login() {
             .login(values.email, values.password)
             .then(() => {
               setServerError("");
-              console.log("successful");
+     
             })
             .catch((e) => {
-              console.log("failed");
+    
               setServerError(e.message);
             });
         }}

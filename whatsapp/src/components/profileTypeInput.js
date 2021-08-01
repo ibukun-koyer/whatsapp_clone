@@ -15,7 +15,7 @@ function ProfileTypeInput({ sectionName, limit, text }) {
         window.getComputedStyle(inputRef.current).height
       );
     }
-    if (inputRef.current.rows != 1)
+    if (parseInt(inputRef.current.rows) !== 1)
       inputRef.current.rows = `${parseInt(inputRef.current.rows) - 1}`;
 
     if (

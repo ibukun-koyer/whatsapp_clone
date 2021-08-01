@@ -13,12 +13,12 @@ function App() {
   const authentication = useAuth();
   useLayoutEffect(() => {
     let settings = localStorage.getItem("settings");
-    console.log(settings);
+
     if (settings) {
       authentication.setSettings(JSON.parse(settings));
     }
   }, []);
-  console.log(authentication.settings);
+
   return (
     <div className={authentication.settings.theme === "dark" ? "dark" : ""}>
       <Switch>
