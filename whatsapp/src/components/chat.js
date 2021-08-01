@@ -86,6 +86,7 @@ function Chat({
 
   //whenever we clear chats, clear message and alert messageUpdates of the changes
   useEffect(() => {
+    console.log(meetingRoom, myEmail, type);
     let ref = firebase
       .database()
       .ref(`${type}s/${meetingRoom}/messages/cleared`);
@@ -102,9 +103,10 @@ function Chat({
       }
     });
     return () => {
+      console.log("cleaning");
       ref.off("child_changed");
     };
-  }, [meetingRoom, myEmail, scr2Ctx, type]);
+  }, [meetingRoom, myEmail, type]);
 
   // update the message based and paginate results
   const getMessages = useCallback(
